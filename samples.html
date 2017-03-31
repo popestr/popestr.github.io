@@ -3,19 +3,97 @@
 <head>
 	<meta charset="utf-8">
 	<link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 	<title>B-ify samples</title>
 	<style type="text/css">
+		@keyframes rainbow{
+			from {
+        	color: rgb(255, 0, 0);
+		    }
+		    16.6% {
+		        color: rgb(255, 0, 255);
+		    }
+		    33.3% {
+		        color: rgb(0, 0, 255);
+		    }
+		    50% {
+		        color: rgb(0, 255, 255);
+		    }
+		    66.6% {
+		        color: rgb(0, 255, 0);
+		    }
+		    83.3% {
+		        color: rgb(255, 255, 0);
+		    }
+		    to {
+		        color: rgb(255, 0, 0);
+		    }
+		}
+		@keyframes rainbowbg{
+			from {
+        	background-color: rgb(255, 0, 0);
+		    }
+		    16.6% {
+		        background-color: rgb(255, 0, 255);
+		    }
+		    33.3% {
+		        background-color: rgb(0, 0, 255);
+		    }
+		    50% {
+		        background-color: rgb(0, 255, 255);
+		    }
+		    66.6% {
+		        background-color: rgb(0, 255, 0);
+		    }
+		    83.3% {
+		        background-color: rgb(255, 255, 0);
+		    }
+		    to {
+		        background-color: rgb(255, 0, 0);
+		    }
+		}
+		@keyframes flow{
+			from{
+				color: white;
+			}
+			50%{
+				color: rgb(153, 0, 0);
+			}
+			to{
+				color: white;
+			}
+		}
+		@keyframes flowbg{
+			from{
+				background-color: white;
+			}
+			50%{
+				background-color: rgb(153, 0, 0);
+			}
+			to{
+				background-color: white;
+			}
+		}
 		html{
 			text-align: center;
 		}
 		body{
+			/*animation: rainbowbg linear 1s infinite;
+			animation-direction: reverse;*/
 			display: inline-block;
 			max-width: 70%;
 			text-align: center;
 			font-family: 'Roboto', sans-serif;
 		}
+		div, a{
+			/*animation: rainbow linear 1s infinite;*/
+		}
 		.head{
+			/*animation-name: rainbow;
+			animation-duration: 3s;
+			animation-iteration-count: infinite;
+			animation-timing-function: linear;*/
 			margin-top: 40px;
 			margin-bottom: 10px;
 			font-weight: bold;
@@ -33,13 +111,34 @@
 			font-size: 50px;
 		}
 	</style>
+	<script type="text/javascript">
+		function spasm(){
+			//$('div').css("animation", "rainbowbg linear 1s infinite;");
+			$('div').css("animation", "rainbow linear 1s infinite");
+			//$('body').css("animation-direction", "reverse");
+		}	
+	</script>
 </head>
 <body>
-	<div class="head">TJHSST Honor Code</div>
+	<div class="head">TJHSST <span id="clicc" onclick="spasm()">Honor Code</span></div>
 	<div class="text">I will uphold academic and personal integrity in the TJ community.</div>
 
 	<div class="head">Navy Seal Copypasta</div>
 	<div class="text-long">What the fuck did you just fucking say about me, you little bitch? I’ll have you know I graduated top of my class in the Navy Seals, and I’ve been involved in numerous secret raids on Al-Quaeda, and I have over 300 confirmed kills. I am trained in gorilla warfare and I’m the top sniper in the entire US armed forces. You are nothing to me but just another target. I will wipe you the fuck out with precision the likes of which has never been seen before on this Earth, mark my fucking words. You think you can get away with saying that shit to me over the Internet? Think again, fucker. As we speak I am contacting my secret network of spies across the USA and your IP is being traced right now so you better prepare for the storm, maggot. The storm that wipes out the pathetic little thing you call your life. You’re fucking dead, kid. I can be anywhere, anytime, and I can kill you in over seven hundred ways, and that’s just with my bare hands. Not only am I extensively trained in unarmed combat, but I have access to the entire arsenal of the United States Marine Corps and I will use it to its full extent to wipe your miserable ass off the face of the continent, you little shit. If only you could have known what unholy retribution your little “clever” comment was about to bring down upon you, maybe you would have held your fucking tongue. But you couldn’t, you didn’t, and now you’re paying the price, you goddamn idiot. I will shit fury all over you and you will drown in it. You’re fucking dead, kiddo.</div>
+
+	<div class="head">M&M Tournament</div>
+	<div class="text-long">Whenever I get a package of plain M&Ms, I make it my duty to continue the strength and robustness of the candy as a species. To this end, I hold M&M duels. Taking two candies between my thumb and forefinger, I apply pressure, squeezing them together until one of them cracks and splinters. That is the “loser,” and I eat the inferior one immediately. The winner gets to go another round. I have found that, in general, the brown and red M&Ms are tougher, and the newer blue ones are genetically inferior. I have hypothesized that the blue M&Ms as a race cannot survive long in the intense theater of competition that is the modern candy and snack-food world. Occasionally I will get a mutation, a candy that is misshapen, or pointier, or flatter than the rest. Almost invariably this proves to be a weakness, but on very rare occasions it gives the candy extra strength. In this way, the species continues to adapt to its environment. When I reach the end of the pack, I am left with one M&M, the strongest of the herd. Since it would make no sense to eat this one as well, I pack it neatly in an envelope and send it to M&M Mars, A Division of Mars, Inc., Hackettstown, NJ 17840-1503 U.S.A., along with a 3×5 card reading, “Please use this M&M for breeding purposes.” This week they wrote back to thank me, and sent me a coupon for a free 1/2 pound bag of plain M&Ms. I consider this “grant money.” I have set aside the weekend for a grand tournament. From a field of hundreds, we will discover the True Champion. There can be only one.</div>
+
+	<div class="head">Attack Helicopter</div>
+	<div class="text-long">I sexually Identify as an Attack Helicopter. Ever since I was a boy I dreamed of soaring over the oilfields dropping hot sticky loads on disgusting foreigners. People say to me that a person being a helicopter is Impossible and I’m fucking retarded but I don’t care, I’m beautiful. I’m having a plastic surgeon install rotary blades, 30 mm cannons and AMG-114 Hellfire missiles on my body. From now on I want you guys to call me “Apache” and respect my right to kill from above and kill needlessly. If you can’t accept me you’re a heliphobe and need to check your vehicle privilege. Thank you for being so understanding.</div>
+
+	<div class="head">t3h PeNgU1N oF d00m</div>
+	<div class="text-long">hi every1 im new!!!!!!! holds up spork my name is katy but u can call me t3h PeNgU1N oF d00m!!!!!!!! lol…as u can see im very random!!!! thats why i came here, 2 meet random ppl like me _… im 13 years old (im mature 4 my age tho!!) i like 2 watch invader zim w/ my girlfreind (im bi if u dont like it deal w/it) its our favorite tv show!!! bcuz its SOOOO random!!!! shes random 2 of course but i want 2 meet more random ppl =) like they say the more the merrier!!!! lol…neways i hope 2 make alot of freinds here so give me lots of commentses!!!!
+	DOOOOOMMMM!!!!!!!!!!!!!!!! <--- me bein random again ^_^ hehe…toodles!!!!!
+	<br><br>
+	love and waffles,
+	<br><br>
+	t3h PeNgU1N oF d00m</div>
 
 	<br><br><a href="boi.html">Return</a>
 
