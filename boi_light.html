@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>waste of my time (light edition)</title>
+	<link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script type="text/javascript">
+		function bify(){
+			document.getElementById("out").innerHTML = "";
+			var ip = document.getElementById("text").value;
+			document.getElementById("text").value = "";
+			var w = ip.split(" ");
+			if(w.length > 15){
+				$("#out").css("font-size", "40px");
+			}
+			else
+				$("#out").css("font-size", "80px");
+			var b = document.getElementById("bb").checked;
+			var cc = document.getElementById("cc").checked;
+			var add = "";
+			var c = ["suchet", "shawn", "vishal", "help"];
+			var replace = ["sucheat", "papa", "boshal", "sice"];
+			console.log(b, cc);
+			for(var x = 0; x < w.length; x++){
+				add = "";
+				w[x] = isSpecial(c, replace, w[x]);
+				if(b && w[x].length > 2 && isLetter(w[x].charAt(0))){
+					if(document.getElementById("letter").value.toLowerCase() == "b"){
+						add = "B";
+					}
+					else
+						add = document.getElementById("letter").value;
+				if(isVowel(w[x].charAt(0))){
+					w[x] = w[x].toLowerCase();
+				}
+				else{
+					var fi = 0;
+					var z = 1;
+					while(fi == 0 && z < w[x].length){
+						if(isVowel(w[x].charAt(z))){
+							fi = z;
+						}
+						else
+							z++;
+					}
+					if(z == w[x].length){
+						fi = 1;
+					}
+					//console.log(w[x].substring(0,1).toLowerCase() == "b" , w[x].substring(1,2).toLowerCase() == "i")
+					// if(w[x].substring(1,2).toLowerCase() == "i")
+					// {
+					// 	//console.log("a")
+					// 	w[x] = "o" + w[x].toLowerCase().substring(2, w[x].length);
+					// }
+					// elses
+					w[x] = w[x].toLowerCase().substring(fi, w[x].length);
+				}
+				}
+				if(cc && w[x].length > 1 && isLetter(w[x].charAt(0))){
+				while(w[x].toLowerCase().indexOf("ck") != -1){
+					w[x] = w[x].substring(0, w[x].toLowerCase().indexOf("ck")) + "cc" + w[x].substring(w[x].toLowerCase().indexOf("ck") + 2, w[x].length);
+				}
+				while(w[x].toLowerCase().indexOf("b") != -1){
+					w[x] = w[x].substring(0, w[x].toLowerCase().indexOf("b")) + "<span class='q'>B</span>" + w[x].substring(w[x].toLowerCase().indexOf("b") + 1, w[x].length);
+				}
+				}
+				console.log(w[x]);
+				document.getElementById("out").innerHTML = document.getElementById("out").innerHTML + " <span style='color:red; font-weight: bold'>"+add+"</span>" + w[x];
+			}
+		}
+		function isVowel(c){
+    		return ['a', 'e', 'i', 'o', 'u', 'y'].indexOf(c.toLowerCase()) !== -1;
+		}
+		function isSpecial(s, r, c){
+			if(s.indexOf(c.toLowerCase()) !== -1){
+				return r[s.indexOf(c.toLowerCase())];
+			}
+			return c;
+
+		}
+		function isLetter(str) {
+  			return str.length === 1 && str.match(/[a-z]/i);
+		}
+		function fixButton(){
+			if(document.getElementById("letter").value.toLowerCase() != "b"){
+				document.getElementById("button").innerHTML = "<span class='B'>" + document.getElementById("letter").value.toUpperCase() + "</span>-ify";
+			}
+			else{
+				document.getElementById("button").innerHTML = "<span class='B'>B</span>-ify";
+			}
+		}
+	</script>
+	<style type="text/css">
+		body{
+
+			font-family: sans-serif;
+
+		}
+		button{
+			cursor: pointer;
+			width: 250px;
+			height: 120px;
+			font-size: 72px;
+			/*border: orange 10px;
+			border-radius:10px;*/
+		}
+		button:focus {outline:0;}
+		/*button:hover{
+			width: 300px;
+			color:white;
+			background-color:black;
+			border-radius: 5px;
+		}*/
+		#button{
+			width: 400px;
+		}
+		.B{
+			color: red;
+			font-weight: bold;
+		}
+		.q{
+			color: red;
+			font-weight: bold;
+		}
+		.inn{
+			width: 550px;
+			text-align: center;
+			height: 120px;
+			font-size: 80px;
+		}
+		.btn{
+			display: inline;
+		}
+		#out{
+			margin-top: 50px;
+			font-family: sans-serif;
+			font-size: 75px;
+		}
+		#contain{
+			text-align: center;
+		}
+		#letter{
+			width: 12px;
+			height: 12px;
+			font-size: 15px;
+
+		}
+	</style>
+</head>
+<body>
+<div id="contain">
+<input type="text" name="input" id="text" class="inn" placeholder="Type anything"><br><br>
+<input type="checkbox" id="bb" checked>Enable <input type="text" id="letter" value="B" oninput="fixButton()" maxlength="4">-ifying <input type="checkbox" id="cc" checked>Enable CC-ifying<br><br>
+<button onclick="bify()" type="submit" id="button" class="sizer"><span class="btn"><span class="B">B</span>-ify</span></button>
+<div id="out"></div>
+<a href="samples.html" target="_blank">View samples</a><br><br>
+<a href="boi.html">Return to original page</a>
+</div>
+</body>
+</html>
