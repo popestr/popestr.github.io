@@ -59,13 +59,13 @@
 			tot = tot.toFixed(2);
 			console.log(tot);
 			Cookies.set("cart", JSON.stringify(c));
-			Cookies.set("t", tot);
+			Cookies.set("t", parseFloat(tot));
 			$("#vc").text("View Cart ("+c.length+")");
 			var table = document.getElementById("items");
 			var row = table.insertRow();
 			row.insertCell(0).innerHTML = sw;
 			row.insertCell(1).innerHTML = p;
-			$("#total").text("Total: $" + tot.toFixed(2));
+			$("#total").text("Total: $" + tot);
 			home();
 		}
 	</script>
