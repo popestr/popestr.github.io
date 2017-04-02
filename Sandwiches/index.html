@@ -54,7 +54,7 @@
 			Cookies.set("cart", JSON.stringify(c));
 			Cookies.set("t", tot);
 			$("#vc").text("View Cart ("+c.length+")");
-			var table = $("#items");
+			var table = document.getElementById("table");
 			var row = table.insertRow();
 			row.insertCell(0).innerHTML = sw;
 			row.insertCell(1).innerHTML = p;
