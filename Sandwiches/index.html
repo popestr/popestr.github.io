@@ -39,7 +39,6 @@
 			$(".salad").css("display", "none");
 			$(".sandwich").css("display", "none");
 			$("#cart").css("display", "block");
-			$("#items").css("display", "table");
 			var c = Cookies.get("cart");
 			var ps = Cookies.get("prices");
 			console.log(c);
@@ -47,6 +46,7 @@
 				$("#cart").text("Your cart is empty.");
 			}
 			else{
+				$("#items").css("display", "table");
 				c = JSON.parse(c);
 				ps = JSON.parse(ps);
 				console.log("ayy", c);
@@ -93,6 +93,7 @@
 			tot = tot.toFixed(2);
 			console.log(tot);
 			Cookies.set("cart", JSON.stringify(c));
+			Cookies.set("prices", JSON.stringify(ps));
 			Cookies.set("t", parseFloat(tot));
 			$("#vc").text("View Cart ("+c.length+")");
 			// var table = document.getElementById("items");
