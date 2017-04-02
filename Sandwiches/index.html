@@ -40,7 +40,11 @@
 		}
 		function add(sw, p){
 			var c = Cookies.get("cart");
-			var tot = parseFloat(Cookies.get("t"));
+			var tot = Cookies.get("t");
+			if(typeof tot == "undefined")
+				tot = 0.0;
+			else
+				tot = parseFloat(tot);
 			if(typeof c == "undefined"){
 				c = [];
 			}
@@ -54,7 +58,7 @@
 			Cookies.set("cart", JSON.stringify(c));
 			Cookies.set("t", tot);
 			$("#vc").text("View Cart ("+c.length+")");
-			var table = document.getElementById("table");
+			var table = document.getElementById("items");
 			var row = table.insertRow();
 			row.insertCell(0).innerHTML = sw;
 			row.insertCell(1).innerHTML = p;
