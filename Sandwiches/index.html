@@ -19,7 +19,11 @@
 		}
 		function showInfo(id){
 			$("#"+id).css("display", "none");
-			$("#"+id+"i").css("display", "block")
+			$("#"+id+"i").css("display", "block");
+			$("#"+id+"i").mouseleave(function{
+				$("#"+id).css("display", "block");
+				$("#"+id+"i").css("display", "none");
+			});
 		}
 		function sw(){
 			$(".ik").css("display", "none");
@@ -168,7 +172,7 @@
 			margin: 0 auto;
 			float: right;
 		}
-		h1{
+		h1, p{
 			background-color: rgba(255,255,255,0.6)
 		}
 
