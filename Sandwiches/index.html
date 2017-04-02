@@ -31,6 +31,7 @@
 			$("#items").css("display", "none");
 		}
 		function vc(){
+			$("#ec").css("display", "block");
 			$(".ik").css("display", "none");
 			$(".salad").css("display", "none");
 			$(".sandwich").css("display", "none");
@@ -52,6 +53,8 @@
 			Cookies.remove("cart");
 			Cookies.remove("t");
 			document.getElementById("items").innerHTML = "<tr><th>Item</th><th>Price</th></tr>";
+			$("items").css("display", "none");
+			$("#vc").text("View Cart");
 
 		}
 		function add(sw, p){
@@ -121,6 +124,10 @@
 			background-position: center;
 			margin-bottom: 0px;
 			color: black;
+		}
+		#ec{
+			display: none;
+			cursor: pointer;
 		}
 		#sw{
 			background-image: url(sandwich.jpg);
@@ -221,7 +228,8 @@
 			<th>Price</th>
 		</tr>
 	</table><br>
-<div id="total" onclick="ec()">Empty Cart</div>
+<div id="total"></div>
+<div id="ec" onclick="ec()">Empty Cart</div>
 </div>
 </body>
 </html>
