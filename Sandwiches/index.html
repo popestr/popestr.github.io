@@ -38,8 +38,9 @@
 				$("#cart").html("You have " + c.length + " items in your cart:");
 			}
 		}
-		function add(sw){
+		function add(sw, p){
 			var c = Cookies.get("cart");
+			var tot = Cookies.get("t");
 			if(typeof c == "undefined"){
 				c = [];
 			}
@@ -47,8 +48,16 @@
 				c = JSON.parse(c);
 			}
 			c.push(sw);
+			tot = tot + p;
+			tot = tot.toFixed(2);
 			Cookies.set("cart", JSON.stringify(c));
+			Cookies.set("t", tot);
 			$("#vc").text("View Cart ("+c.length+")");
+			var table = $("#items");
+			var row = table.insertRow();
+			row.insertCell(0).innerHTML = sw;
+			row.insertCell(1).innerHTML = p;
+			$("#total").text("Total: $" + tot);
 			home();
 		}
 	</script>
@@ -137,6 +146,7 @@
 			cursor: pointer;
 		}
 		#cart{
+			margin-top: 20px;
 			display: none;
 		}
 	</style>
@@ -156,7 +166,7 @@
 	<h1>Reuben</h1>
 </div>
 <!-- <div class="atc atcsw">$3.50<a href="">Add to Cart</a></div> -->
-<div class="item sandwich" id="sw2" onclick="add('BLT')">
+<div class="item sandwich" id="sw2" onclick="add('BLT', 3.5)">
 	<h1>BLT</h1>
 </div>
 
@@ -167,7 +177,15 @@
 <h1>House Salad</h1>
 
 </div>
-<div id="cart"> This is the cart</div>
+<div id="cart">
+	<table id="items">
+		<tr>
+			<th>Item</th>
+			<th>Price</th>
+		</tr>
+	</table>
+</div><br>
+<div id="total"></div>
 </div>
 </body>
 </html>
