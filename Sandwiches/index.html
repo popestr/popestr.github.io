@@ -17,6 +17,10 @@
 			}
 			
 		}
+		function showInfo(id){
+			$("#"+id).css("display", "none");
+			$("#"+id+"i").css("display", "block")
+		}
 		function sw(){
 			$(".ik").css("display", "none");
 			$(".sandwich").css("display", "block");
@@ -167,6 +171,7 @@
 		h1{
 			background-color: rgba(255,255,255,0.6)
 		}
+
 		.item{
 			width: 50%;
 			margin: 0 auto;
@@ -224,8 +229,11 @@
 	<h1>Salads</h1>
 </div>
 
-<div class="item sandwich" id="sw1" onclick="add('Reuben', 3.0)">
+<div class="item sandwich" id="sw1" onclick="add('Reuben', 3.0)" onmouseover="showInfo(this.id)">
 	<h1>Reuben</h1>
+</div>
+<div class="info sandwich" id="sw1i" onclick="add('Reuben', 3.0)">
+	<p>The reuben is a truly maginficent sandwich.</p>
 </div>
 <!-- <div class="atc atcsw">$3.50<a href="">Add to Cart</a></div> -->
 <div class="item sandwich" id="sw2" onclick="add('BLT', 3.5)">
