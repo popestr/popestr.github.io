@@ -8,11 +8,11 @@
 	<script type="text/javascript">
 		window.onload=function(){
 			var c = Cookies.get("cart");
-			var tot = Cookies.get("t")
+			var tot = Cookies.get("t");
 			if(typeof c != "undefined"){
 				c = JSON.parse(c);
 				$("#vc").text("View Cart ("+c.length+")");
-				$("#total").text("Total: "+tot.toFixed(2));
+				$("#total").text("Total: "+parseFloat(tot).toFixed(2));
 			}
 			
 		}
