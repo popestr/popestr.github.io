@@ -27,6 +27,7 @@
 			$(".sandwich").css("display", "none");
 			$("#cart").css("display", "block");
 			var c = Cookies.get("cart");
+			console.log(c);
 			if(typeof c == "undefined"){
 				$("#cart").text("Your cart is empty.");
 			}
