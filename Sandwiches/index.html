@@ -17,14 +17,14 @@
 			}
 			
 		}
-		function showInfo(id){
-			$("#"+id).css("display", "none");
-			$("#"+id+"i").css("display", "block");
-			$("#"+id+"i").mouseleave(function(){
-				$("#"+id).css("display", "block");
-				$("#"+id+"i").css("display", "none");
-			});
-		}
+		// function showInfo(id){
+		// 	$("#"+id).css("display", "none");
+		// 	$("#"+id+"i").css("display", "block");
+		// 	$("#"+id+"i").mouseleave(function(){
+		// 		$("#"+id).css("display", "block");
+		// 		$("#"+id+"i").css("display", "none");
+		// 	});
+		// }
 		function sw(){
 			$(".ik").css("display", "none");
 			$(".sandwich").css("display", "block");
@@ -245,7 +245,7 @@
 	<h1>Salads</h1>
 </div>
 
-<div class="item sandwich" id="sw1" onclick="add('Reuben', 3.0)" onmouseover="showInfo(this.id)">
+<div class="item sandwich" id="sw1" onclick="add('Reuben', 3.0)">
 	<h1>Reuben</h1>
 </div>
 <div class="info sandwich" id="sw1i" onclick="add('Reuben', 3.0)">
