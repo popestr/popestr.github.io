@@ -8,9 +8,11 @@
 	<script type="text/javascript">
 		window.onload=function(){
 			var c = Cookies.get("cart");
+			var tot = Cookies.get("t")
 			if(typeof c != "undefined"){
 				c = JSON.parse(c);
 				$("#vc").text("View Cart ("+c.length+")");
+				$("#total").text("Total: "+tot.toFixed(2));
 			}
 			
 		}
@@ -29,6 +31,7 @@
 			$(".sandwich").css("display", "none");
 			$("#cart").css("display", "none");
 			$("#items").css("display", "none");
+			$("#ec").css("display", "none");
 		}
 		function vc(){
 			$("#ec").css("display", "block");
@@ -38,28 +41,38 @@
 			$("#cart").css("display", "block");
 			$("#items").css("display", "table");
 			var c = Cookies.get("cart");
+			var ps = Cookies.get("prices");
 			console.log(c);
 			if(typeof c == "undefined"){
 				$("#cart").text("Your cart is empty.");
 			}
 			else{
 				c = JSON.parse(c);
+				ps = JSON.parse(ps);
 				console.log("ayy", c);
 				$("#cart").html("You have " + c.length + " items in your cart.");
 				$("#cc").css("display", "block");
+				for(var x = 0; x < ps.length; x++){
+					var table = document.getElementById("items");
+					var row = table.insertRow();
+					row.insertCell(0).innerHTML = c[x];
+					row.insertCell(1).innerHTML = "$" + ps[x].toFixed(2);
+				}
 			}
+
 		}
 		function ec(){
 			Cookies.remove("cart");
 			Cookies.remove("t");
 			document.getElementById("items").innerHTML = "<tr><th>Item</th><th>Price</th></tr>";
-			$("items").css("display", "none");
+			$("#items").css("display", "none");
 			$("#vc").text("View Cart");
 			$("#total").text("");
 
 		}
 		function add(sw, p){
 			var c = Cookies.get("cart");
+			var ps = Cookies.get("prices");
 			var tot = Cookies.get("t");
 			console.log(p);
 			if(typeof tot == "undefined")
@@ -68,21 +81,24 @@
 				tot = parseFloat(tot);
 			if(typeof c == "undefined"){
 				c = [];
+				ps = [];
 			}
 			else{
 				c = JSON.parse(c);
+				ps = JSON.parse(ps);
 			}
 			c.push(sw);
+			ps.push(p);
 			tot = tot + p;
 			tot = tot.toFixed(2);
 			console.log(tot);
 			Cookies.set("cart", JSON.stringify(c));
 			Cookies.set("t", parseFloat(tot));
 			$("#vc").text("View Cart ("+c.length+")");
-			var table = document.getElementById("items");
-			var row = table.insertRow();
-			row.insertCell(0).innerHTML = sw;
-			row.insertCell(1).innerHTML = p.toFixed(2);
+			// var table = document.getElementById("items");
+			// var row = table.insertRow();
+			// row.insertCell(0).innerHTML = sw;
+			// row.insertCell(1).innerHTML = "$" + p.toFixed(2);
 			$("#total").text("Total: $" + tot);
 			home();
 		}
