@@ -47,6 +47,7 @@
 			}
 			c.push(sw);
 			Cookies.set("cart", JSON.stringify(c));
+			$("#vc").text("View Cart ("+c.length+")");
 			home();
 		}
 	</script>
