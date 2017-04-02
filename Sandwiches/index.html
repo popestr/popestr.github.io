@@ -64,7 +64,7 @@
 			var table = document.getElementById("items");
 			var row = table.insertRow();
 			row.insertCell(0).innerHTML = sw;
-			row.insertCell(1).innerHTML = p;
+			row.insertCell(1).innerHTML = tot;
 			$("#total").text("Total: $" + tot);
 			home();
 		}
@@ -138,6 +138,8 @@
 			text-align: center;
 		}
 		#items{
+			margin-left:auto; 
+    		margin-right:auto;
 			display: none;
 			border-color: black;
 		}
