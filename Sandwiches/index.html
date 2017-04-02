@@ -50,6 +50,7 @@
 			c.push(sw);
 			tot = tot + p;
 			tot = tot.toFixed(2);
+			console.log(tot);
 			Cookies.set("cart", JSON.stringify(c));
 			Cookies.set("t", tot);
 			$("#vc").text("View Cart ("+c.length+")");
