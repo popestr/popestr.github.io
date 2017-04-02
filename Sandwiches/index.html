@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Sandwich Shop</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+	<script src="Cookie.js"></script>
+	<script type="text/javascript">
+		function sw(){
+			$(".ik").css("display", "none");
+			$(".sandwich").css("display", "block");
+			$(".atcsw").css("display", "inline");
+		}
+		function sl(){
+			$(".ik").css("display", "none");
+			$(".salad").css("display", "block");
+		}
+		function home(){
+			$(".ik").css("display", "block");
+			$(".salad").css("display", "none");
+			$(".sandwich").css("display", "none");
+			$("#cart").css("display", "none");
+		}
+		function vc(){
+			$(".ik").css("display", "none");
+			$(".salad").css("display", "none");
+			$(".sandwich").css("display", "none");
+			$("#cart").css("display", "block");
+			var c = Cookies.get("cart");
+			if(typeof c == "undefined"){
+				$("#cart").text("Your cart is empty.");
+			}
+			else{
+				c = JSON.parse(c);
+				$("#cart").text("You have " + c.length + " items in your cart:");
+			}
+		}
+		function add(sw){
+			var c = Cookies.get("cart");
+			if(typeof c == "undefined"){
+				c = [];
+			}
+			else{
+				c = JSON.parse(c);
+			}
+			c.push(sw);
+			Cookies.set("cart", JSON.stringify(c));
+		}
+	</script>
+	<style type="text/css">
+	    @keyframes disappear{
+	    	from{display: block;}
+	    	to{display: none;}
+	    }
+	    #home{
+	    	cursor: pointer;
+	    }
+		body{
+			-webkit-touch-callout: none;
+	        -webkit-user-select: none;
+	        -khtml-user-select: none;
+	        -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+			cursor: default;
+			font-family: Roboto, sans-serif;
+			font-size: 20px;
+			background-color: rgb(230, 230, 250);
+			color: rgb(0, 182, 207);
+		}
+		#logo{
+			width: 10%;
+			height: 10%;
+		}
+		.contain{
+			text-align: center;
+		}
+		.ik{
+			width: 50%;
+			min-height: 80px;
+			margin: 0 auto;
+			margin-top: 10px;
+			border: 1px solid black;
+			display: block;
+			background-position: center;
+			margin-bottom: 0px;
+			color: black;
+		}
+		#sw{
+			background-image: url(sandwich.jpg);
+			background-size: 115%;
+		}
+		#sl{
+			background-image: url(salad.jpg);
+			background-size: cover;
+		}
+		.atc{
+			border: 1px solid black;
+			background-color: rgb(235, 235, 255);
+			display: none;
+			margin: 0 auto;
+			float: right;
+		}
+		h1{
+			background-color: rgba(255,255,255,0.6)
+		}
+		.item{
+			width: 50%;
+			margin: 0 auto;
+			margin-top: 10px;
+			border: 1px solid black;
+			display: none;
+			background-position: center;
+			margin-bottom: 0px;
+			color: black;
+			text-align: center;
+		}
+		.sandwich{
+			background-image: url(sandwich.jpg);
+			background-size: 115%;
+		}
+		.salad{
+			background-image: url(salad.jpg);
+			background-size: cover;
+		}
+		.price{
+			text-align: right;
+			display: inline-block;
+			float: right;
+		}
+		#vc{
+			cursor: pointer;
+		}
+		#cart{
+			display: none;
+		}
+	</style>
+</head>
+<body>
+<div class="contain">
+<img src="logo.png" id='logo'><br><span id="home" onclick="home()">Sandwich Shoppe</span><br>
+<span id="vc" onclick="vc()">View Cart</span>
+<div class="ik" id="sw" onclick="sw()">
+	<h1>Sandwiches</h1>
+</div>
+<div class="ik" id="sl" onclick="sl()">
+	<h1>Salads</h1>
+</div>
+
+<div class="item sandwich" id="sw1" onclick="add('Reuben')">
+	<h1>Reuben</h1>
+</div>
+<!-- <div class="atc atcsw">$3.50<a href="">Add to Cart</a></div> -->
+<div class="item sandwich" id="sw2" onclick="add('BLT')">
+	<h1>BLT</h1>
+</div>
+
+<div class="item salad" id="sl1" onclick="add('Caesar')">
+<h1>Caesar</h1>
+</div>
+<div class="item salad" id="sl2" onclick="add('House Salad')">
+<h1>House Salad</h1>
+
+<div id="cart"></div>
+</div>
+</div>
+</body>
+</html>
