@@ -55,6 +55,7 @@
 			document.getElementById("items").innerHTML = "<tr><th>Item</th><th>Price</th></tr>";
 			$("items").css("display", "none");
 			$("#vc").text("View Cart");
+			$("#total").text("");
 
 		}
 		function add(sw, p){
@@ -195,7 +196,7 @@
 </head>
 <body>
 <div class="contain">
-<img src="logo.png" id='logo'><br><span id="home" onclick="home()">Sandwich Shoppe</span><br>
+<img src="logo.png" id='logo'><br><span id="home" onclick="home()">Sandwich Shoppe</span><br><br>
 <span id="vc" onclick="vc()">View Cart</span>
 <div class="ik" id="sw" onclick="sw()">
 	<h1>Sandwiches</h1>
@@ -221,7 +222,7 @@
 </div>
 <div id="cart">
 </div>
-<div id="cc"></div>
+<div id="cc"></div><br><br><br>
 <table id="items">
 		<tr>
 			<th>Item</th>
