@@ -40,7 +40,7 @@
 		}
 		function add(sw, p){
 			var c = Cookies.get("cart");
-			var tot = Cookies.get("t");
+			var tot = parseFloat(Cookies.get("t"));
 			if(typeof c == "undefined"){
 				c = [];
 			}
