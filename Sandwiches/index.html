@@ -20,12 +20,14 @@
 			$(".salad").css("display", "none");
 			$(".sandwich").css("display", "none");
 			$("#cart").css("display", "none");
+			$("#items").css("display", "none");
 		}
 		function vc(){
 			$(".ik").css("display", "none");
 			$(".salad").css("display", "none");
 			$(".sandwich").css("display", "none");
 			$("#cart").css("display", "block");
+			$("#items").css("display", "table");
 			var c = Cookies.get("cart");
 			console.log(c);
 			if(typeof c == "undefined"){
@@ -63,7 +65,7 @@
 			var row = table.insertRow();
 			row.insertCell(0).innerHTML = sw;
 			row.insertCell(1).innerHTML = p;
-			$("#total").text("Total: $" + tot);
+			$("#total").text("Total: $" + tot.toFixed(2));
 			home();
 		}
 	</script>
@@ -134,6 +136,10 @@
 			margin-bottom: 0px;
 			color: black;
 			text-align: center;
+		}
+		#items{
+			display: none;
+			border-color: black;
 		}
 		.sandwich{
 			background-image: url(sandwich.jpg);
