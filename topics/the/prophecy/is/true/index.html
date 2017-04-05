@@ -2,11 +2,31 @@
 <html>
 <head>
 	<title>BARJUN IS GOD</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script type="text/javascript">
+			var type = true;
+			window.setInterval(gro, 2000);
+			function gro(){
+			
+			if(type){
+				$("body").html($("body").html()+"<br><br><h1 onclick='gro()' class='h'>NO<br><br>FALSE<br><br>PROPHETS</h1>");
+				type = false;
+			}
+			else{
+				$("body").html($("body").html()+"<br><br><h1 onclick='gro()' class='h'>BARJUN<br><br>IS<br><br>GOD</h1>");
+				type = true;
+			}
+			var time = $(".h").css("animation-duration");
+			var at = parseFloat(time.substring(0, time.indexOf("s")));
+			$(".h").css("animation-duration", at/2+"s");
+			console.log(at/2);
+			}
+	</script>
 	<style type="text/css">
 		@keyframes rainbow{
 			from {
         	color: rgb(255, 0, 0);
-        	font-size: 70px;
+        	font-size: 15px;
         	left: 0;
 		    }
 		    16.6% {
@@ -18,7 +38,7 @@
 		    }
 		    50% {
 		        color: rgb(0, 255, 255);
-		        font-size: 100px;
+		        font-size: 30px;
 		        left: 50%;
 		    }
 		    66.6% {
@@ -28,24 +48,29 @@
 		        color: rgb(255, 255, 0);
 		    }
 		    to {
+		    	-moz-transform: rotate(360deg);
+		    	-webkit-transform: rotate(360deg);
+		    	-webkit-transform: rotate(360deg); transform:rotate(360deg);
 		        color: rgb(255, 0, 0);
-		        font-size: 70px;
+		        font-size: 15px;
 		        left: 0;
 		    }
 		}
 		h1{
-			animation: rainbow linear 1s infinite;
+			animation: rainbow linear infinite;
+			animation-duration: 8s;
 			text-align: center;
 			font-size: 70px;
 			font-family: Arial;
 		}
 		body{
+			display: inline;
 			background-color: black;
 			text-align: center;
 		}
 	</style>
 </head>
 <body>
-	<h1>BARJUN<br><br>IS<br><br>GOD</h1>
+	<h1 class="h" onclick="gro()">BARJUN<br><br>IS<br><br>GOD</h1>
 </body>
 </html>
