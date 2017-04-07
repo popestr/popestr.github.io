@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<!-- saved from url=(0023)https://ion.tjhsst.edu/ -->
+<html lang="en" class=" js flexbox flexboxlegacy canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers applicationcache svg inlinesvg smil svgclippaths"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>
+TJ Intranet - Login
+</title>
+
+<meta name="application-name" content="TJ Intranet">
+<meta name="msapplication-tooltip" content="TJ Intranet">
+<meta name="description" content="The Intranet for students and faculty at the Thomas Jefferson High School for Science and Technology (TJHSST). Student-created, run, and maintained.">
+<meta name="keywords" content="TJ Intranet, TJ Ion, TJHSST, Eighth Period, Thomas Jefferson High School for Science and Technology, TJ CSL, Computer Systems Lab">
+<meta name="author" content="The TJ Intranet Development Team">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="TJ Intranet">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="msapplication-starturl" content="/">
+<meta name="theme-color" content="#0048AB">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="og:title" content="TJ Intranet">
+<meta name="og:site_name" content="TJ Intranet">
+<meta name="og:description" content="The Intranet for students and faculty at the Thomas Jefferson High School for Science and Technology (TJHSST). Student-created, run, and maintained.">
+<meta name="og:image" content="/static/img/logos/touch/touch-icon512.png">
+<link rel="shortcut icon" href="https://ion.tjhsst.edu/favicon.ico" type="image/x-icon">
+<link rel="icon" href="https://ion.tjhsst.edu/favicon.ico" type="image/x-icon">
+<link rel="shortcut icon" href="data:image/webp;base64,UklGRjICAABXRUJQVlA4TCYCAAAvH8AHEC/CNpIkJ/MCsDQuwZB/Olre1hEF20aSFPWxdffkfjCffzqMO2wbSVLUx9bdk/vBfP7pMO4obNu2TUXq3lXbtg3jttnJHUAAAszLwrKunNfFdd9M88x139zPwzhN3M/DcZ7r/T6HceR5X+/nSXWtX1K+7vumEIqZWZWSJJXovZI2cIASvV9mNqP3WZKSCpDNbKUQ9vf/KXqvmelvBOcGkIJzDyiSCM4BIElgBuc0M4NzAeAHJAEQnAtJeAJ4zz/4H4AsSbZN2xrX9x7btm2fuffof5+WLt/7jug/w4Bp24ike1DKFfj31aYtX+35xn201QaiK35Dq6haFTkKAPk7ZVJPXZiuT4T3PBAYsah3HwesoiKcJZWJC5+A5IxSQZWDR+N04nYpiXQND2c+6yd1RUqXW8K6pUahmi7UoLBmPyS459yycOKLaWDOfdAm5vnLyGdElr4Xsylzy6Zp4cBX4wVNblm2GbKxYsZNhqsGhzZrpozwlXZ8A4zIU1zb3BkywnegIw/x7kSHH1cWtnwH4jrysAu1AxV+/8Hkoa8jd+4MWQeCUxaADT9Q4FRFXnddUuZE3ZflIqKJLJhVNiauB8U80Z1os6k+MdDUbUNSXP8FPc4A3cDMmjmzbTP24FD0bvRChb/i2Ghbl/eoC+SNXqnwj/R121Sv8nDL7GXiJrwmrF5+IqvXLZ8dq9efK9rzaMnrRfElxcrDtXjrYTmG/4kA" type="image/png">
+<link rel="icon" href="data:image/webp;base64,UklGRjICAABXRUJQVlA4TCYCAAAvH8AHEC/CNpIkJ/MCsDQuwZB/Olre1hEF20aSFPWxdffkfjCffzqMO2wbSVLUx9bdk/vBfP7pMO4obNu2TUXq3lXbtg3jttnJHUAAAszLwrKunNfFdd9M88x139zPwzhN3M/DcZ7r/T6HceR5X+/nSXWtX1K+7vumEIqZWZWSJJXovZI2cIASvV9mNqP3WZKSCpDNbKUQ9vf/KXqvmelvBOcGkIJzDyiSCM4BIElgBuc0M4NzAeAHJAEQnAtJeAJ4zz/4H4AsSbZN2xrX9x7btm2fuffof5+WLt/7jug/w4Bp24ike1DKFfj31aYtX+35xn201QaiK35Dq6haFTkKAPk7ZVJPXZiuT4T3PBAYsah3HwesoiKcJZWJC5+A5IxSQZWDR+N04nYpiXQND2c+6yd1RUqXW8K6pUahmi7UoLBmPyS459yycOKLaWDOfdAm5vnLyGdElr4Xsylzy6Zp4cBX4wVNblm2GbKxYsZNhqsGhzZrpozwlXZ8A4zIU1zb3BkywnegIw/x7kSHH1cWtnwH4jrysAu1AxV+/8Hkoa8jd+4MWQeCUxaADT9Q4FRFXnddUuZE3ZflIqKJLJhVNiauB8U80Z1os6k+MdDUbUNSXP8FPc4A3cDMmjmzbTP24FD0bvRChb/i2Ghbl/eoC+SNXqnwj/R121Sv8nDL7GXiJrwmrF5+IqvXLZ8dq9efK9rzaMnrRfElxcrDtXjrYTmG/4kA" type="image/png">
+<link rel="manifest" href="https://ion.tjhsst.edu/manifest.json">
+<link rel="apple-touch-icon" href="data:image/webp;base64,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">
+<link rel="apple-touch-icon" sizes="76x76" href="data:image/webp;base64,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">
+<link rel="apple-touch-icon" sizes="120x120" href="https://ion.tjhsst.edu/static/img/logos/touch/xtouch-icon120.png.pagespeed.ic.Qh9e7mhvoC.webp">
+<link rel="apple-touch-icon" sizes="152x152" href="https://ion.tjhsst.edu/static/img/logos/touch/xtouch-icon152.png.pagespeed.ic.e9-j0XL198.webp">
+<link rel="icon" sizes="128x128" type="image/png" href="https://ion.tjhsst.edu/static/img/logos/touch/xtouch-icon128.png.pagespeed.ic.N-uIPZcBD3.webp">
+<link rel="icon" sizes="144x144" type="image/png" href="https://ion.tjhsst.edu/static/img/logos/touch/xtouch-icon144.png.pagespeed.ic.E1E7Jf2XDe.webp">
+<link rel="icon" sizes="192x192" type="image/png" href="https://ion.tjhsst.edu/static/img/logos/touch/xtouch-icon192.png.pagespeed.ic.2Ll3x4FbgG.webp">
+<link href="./intranet_files/A.font-awesome.min.css.pagespeed.cf.1aywsHIR7W.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="./intranet_files/css">
+<link href="./intranet_files/A.base.css+schedule.css+login.css+events.css,Mcc.llCcLBi3uF.css.pagespeed.cf.gJeOGUDtgP.css" rel="stylesheet" type="text/css">
+<style type="text/css">body{background-image:url(/static/img/patterns/xsquairy_light.png.pagespeed.ic.NMzbrxJavu.webp)}</style>
+<style>.header{background-color:#0048ab}.header .search input[type="text"]{background-color:#f2f2f4;color:#0048ab}.widget{border-color:#0048ab}.widget-title{border-bottom-color:#0048ab;font-weight:bold}.widget-title a.ui-link{color:#0048ab;text-decoration:underline;font-weight:normal}.widget,.widget-content{background-color:#fff}ul.nav{background-color:#fff;border:1px solid #0048ab;border-color:#8894a0}ul.nav li.selected{background-color:#3c69b6}ul.nav li.selected a{color:#fff}ul.nav li:not(.selected) a:hover i {color:#0055a4}ul.nav a:hover{color:#015ede}.main ul.nav>li{border-color:#8894a0}.nav a,.nav a:active,.nav a:visited{text-decoration:none;color:#484848}body.login-page input{border:1px solid rgba(0,72,171,.3)}body.login-page input[type="submit"]{border:1px solid rgba(0,72,171,.3);color:#0048ab}body.login-page input[type="submit"].load-spinner{border-color:transparent;background:transparent;text-shadow:none;box-shadow:none}</style>
+<script type="text/javascript" src="./intranet_files/jquery-1.10.2.min.js.pagespeed.jm.ZzSiN_5Whq.js"></script>
+<script src="./intranet_files/vendor,_jquery.cookie.js+vendor,_modernizr.js+common.js.pagespeed.jc.R1vOrNhLX_.js"></script><script>eval(mod_pagespeed_ZdT0TJQcnC);</script>
+<script>eval(mod_pagespeed_AajOh4GS2s);</script>
+<script>eval(mod_pagespeed_QdLefS6ws1);</script>
+<script type="text/javascript">Modernizr.load({test:Modernizr.borderradius,nope:"/static/js/vendor/PIE/PIE.js"});Modernizr.load({test:Modernizr.touch,yep:"//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.2/fastclick.min.js",complete:function(){if(Modernizr.touch){FastClick.attach(document.body);}}});$(function(){$("body").removeClass("notransition");});</script>
+<script src="./intranet_files/swregistration.js+schedule.js+login.js+vendor,_spin.min.js.pagespeed.jc.kLgPnM9OBw.js"></script><script>eval(mod_pagespeed_zJ7SGr3x3k);</script>
+<script>eval(mod_pagespeed_Ru_laNvLew);</script>
+<script>eval(mod_pagespeed_gb$WvmU_PS);</script>
+<script>eval(mod_pagespeed_tCPLhJhLD2);</script><style type="text/css"></style>
+</head>
+<body class="login-page">
+<div class="center-wrapper">
+<div class="center">
+<div class="login">
+<div class="title">
+<div class="logo">
+</div>
+<h1>TJ Intranet</h1>
+</div>
+<form action="https://ion.tjhsst.edu/login" method="post" name="auth_form">
+<input type="hidden" name="csrfmiddlewaretoken" value="j2uDhhqC12pKHArrHYWHxhO35BKaKbDR0QTMDGQnXG1yk3wY7m71n1dcDaEIGHcb">
+<input aria-label="Enter Username" id="id_username" name="username" placeholder="Username" type="text" required=""><br>
+<input aria-label="Enter Password" id="id_password" name="password" placeholder="Password" type="password" required=""><br>
+<input type="submit" value="Login">
+<div class="spinner-container"></div>
+</form>
+</div>
+<div class="schedule-outer">
+<div class="schedule" data-endpoint="/schedule/view" data-prev-date="2017-04-06" data-next-date="2017-04-10" data-date="2017-04-07">
+<a href="https://ion.tjhsst.edu/?date=2017-04-06" class="chevron schedule-left" title="Previous Day"><i class="fa fa-chevron-left"></i></a>
+<span class="schedule-date">Fri, April 7</span>
+<a href="https://ion.tjhsst.edu/?date=2017-04-10" class="chevron schedule-right" title="Next Day"><i class="fa fa-chevron-right"></i></a>
+<br>
+<h2 class="day-name day-type-red day-special">Modified Red Day:<br> 2 Hour Early Dismissal</h2>
+<br>
+<table class="bellschedule-table today">
+<tbody><tr class="schedule-block" data-block-name="Period 5" data-block-start="8:40" data-block-end="10:10" data-block-order="1">
+<th class="block">Period 5:</th>
+<td class="times">8:40 - 10:10</td>
+</tr>
+<tr class="schedule-block" data-block-name="Period 6" data-block-start="10:20" data-block-end="11:50" data-block-order="2">
+<th class="block">Period 6:</th>
+<td class="times">10:20 - 11:50</td>
+</tr>
+<tr class="schedule-block" data-block-name="Lunch" data-block-start="11:50" data-block-end="12:30" data-block-order="3">
+<th class="block">Lunch:</th>
+<td class="times">11:50 - 12:30</td>
+</tr>
+<tr class="schedule-block current" data-block-name="Period 7" data-block-start="12:30" data-block-end="2:00" data-block-order="4">
+<th class="block">Period 7:</th>
+<td class="times">12:30 - 2:00</td>
+</tr>
+</tbody></table>
+</div>
+</div>
+</div>
+</div>
+<span class="sidebar-trigger"><i class="fa fa-fw fa-calendar-o"></i></span>
+<div class="sidebar">
+<h1>Events</h1>
+<div class="events-outer">
+<h2>In-School Events</h2>
+<p>There are no in-school events in the next week.</p>
+<h2>Sporting Events</h2>
+<p>There are no sporting events in the next week.</p>
+</div>
+</div>
+<div class="footer">
+<div class="git-version" title="Commit ae74f53
+Wed Mar 22 12:58:43 2017 -0400" data-github-url="https://github.com/tjcsl/ion/commit/ae74f53">
+<span id="revision">revision ae74f53</span> &nbsp;<span id="git-oss">open source software &nbsp;</span><span id="git-logo"><i class="fa fa-flask git-flask"></i><i class="fa fa-github git-github"></i></span>
+</div>
+<div class="links">
+<a href="https://ion.tjhsst.edu/about">About/Credits</a> &nbsp; - &nbsp;
+<a rel="noopener noreferrer" href="https://www.tjhsst.edu/">TJHSST</a> &nbsp; - &nbsp;
+<a rel="noopener noreferrer" href="https://webmail.tjhsst.edu/">Webmail</a> &nbsp; - &nbsp;
+<a rel="noopener noreferrer" href="https://calendar.tjhsst.edu/">Calendar</a>
+</div>
+</div>
+
+
+</body></html>
