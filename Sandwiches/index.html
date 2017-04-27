@@ -68,6 +68,7 @@
 					var row = table.insertRow();
 					row.insertCell(0).innerHTML = c[x];
 					row.insertCell(1).innerHTML = "$" + ps[x].toFixed(2);
+					row.insertCell(2).innerHTML = "<input type='text' style='width: 100%;'>"
 				}
 			}
 
@@ -75,7 +76,7 @@
 		function ec(){
 			Cookies.remove("cart");
 			Cookies.remove("t");
-			document.getElementById("items").innerHTML = "<tr><th>Item</th><th>Price</th></tr>";
+			document.getElementById("items").innerHTML = "<tr><th>Item</th><th>Price</th><th>Special Requests (Optional)</tr>";
 			$("#sr").text("");
 			$("#sr").css("display", "none");
 			$("#items").css("display", "none");
@@ -284,7 +285,7 @@
 	</table><br>
 <div id="total"></div><br>
 <div class="center">
-<textarea id="sr" placeholder="Special requests (optional)" rows="5" cols="40"></textarea><br>
+<!-- <textarea id="sr" placeholder="Special requests (optional)" rows="5" cols="40"></textarea><br> -->
 </div><br><br>
 <div id="ec" onclick="ec()">Empty Cart</div>
 </div>
