@@ -7,6 +7,8 @@
 	<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 	<script src="Cookie.js"></script>
 	<script type="text/javascript">
+		var items;
+		var dcs;
 		window.onload=function(){
 			var c = Cookies.get("cart");
 			var tot = Cookies.get("t");
@@ -15,7 +17,14 @@
 				$("#vc").text("View Cart ("+c.length+")");
 				$("#total").text("Total: $"+parseFloat(tot).toFixed(2));
 			}
+			addItem("Reuben", "sandwich", "3.50", "A sandwich", "sandwich.png");
 			
+		}
+		function addItem(name, type, price, desc, imgurl){
+			document.getElementById("body").innerHTML += "<div class='info' onclick='showInfo('"+name+")''><img src='"+imgurl+"' id='arrow'></div>"+
+			"<div class='item "+type+"' onclick='add('"+name+"', "+price+")'><h1>"+name+"</h1></div><br>"
+			items.add(name);
+			dcs.add(desc);
 		}
 		// function showInfo(id){
 		// 	$("#"+id).css("display", "none");
@@ -27,7 +36,8 @@
 		// }
 		function sw(){
 			$(".ik").css("display", "none");
-			$(".sandwich").css("display", "block");
+			$(".sandwich").css("display", "inline-block");
+			$(".info").css("display", "inline-block");
 			$(".atcsw").css("display", "inline");
 		}
 		function sl(){
@@ -42,6 +52,9 @@
 			$("#items").css("display", "none");
 			$("#ec").css("display", "none");
 			$("#sr").css("display", "none");
+		}
+		function showInfo(a){
+
 		}
 		function vc(){
 			$("#ec").css("display", "block");
@@ -187,11 +200,12 @@
 			float: right;
 		}
 		h1, p{
-			background-color: rgba(255,255,255,0.6)
+			background-color: rgba(255,255,255,0.6);
 		}
 
 		.item{
-			width: 50%;
+			width: 30%;
+			height: 100px;
 			margin: 0 auto;
 			margin-top: 10px;
 			border: 1px solid black;
@@ -202,15 +216,12 @@
 			text-align: center;
 		}
 		.info{
-			width: 50%;
+			height: 50px;
+			width: 5%;
 			margin: 0 auto;
-			margin-top: 10px;
-			border: 1px solid black;
 			display: none;
-			background-position: center;
 			margin-bottom: 0px;
 			color: black;
-			text-align: center;
 			display: none;
 		}
 		#items{
@@ -225,6 +236,10 @@
 		th,td{
 			width: 30%;
 			height: 10%;
+		}
+		#arrow{
+			width: 100%;
+			height: 50px;
 		}
 		.sandwich{
 			background-image: url(sandwich.jpg);
@@ -248,10 +263,10 @@
 		}
 	</style>
 </head>
-<body>
+<body id="body">
 <div class="contain"><span onclick="home()" style="cursor: pointer;">
 <img src="logo.png" id='logo'><br><span id="home">Sandwich Shoppe</span></span><br><br>
-<span id="vc" onclick="vc()">View Cart</span>
+<span id="vc" onclick="vc()">View Cart</span><br>
 <div class="ik" id="sw" onclick="sw()">
 	<h1>Sandwiches</h1>
 </div>
@@ -259,19 +274,21 @@
 	<h1>Salads</h1>
 </div>
 
-<div class="item sandwich" id="sw1" onclick="add('Reuben', 3.0)" title="The Reuben is truly a magnificent sandwich.">
+<!-- <div class="info" onclick="showInfo('Reuben')"><img src="arrow.png" id="arrow"></div>
+<div class="item sandwich" onclick="add('Reuben', 3.0)">
 	<h1>Reuben</h1>
-</div>
-<!-- <div class="atc atcsw">$3.50<a href="">Add to Cart</a></div> -->
-<div class="item sandwich" id="sw2" onclick="add('BLT', 3.5)">
+</div><br>
+<div class="atc atcsw">$3.50<a href="">Add to Cart</a></div>
+<div class="info"><img src="arrow.png" id="arrow"></div>
+<div class="item sandwich" onclick="add('BLT', 3.5)">
 	<h1>BLT</h1>
-</div>
+</div><br>
 
-<div class="item salad" id="sl1" onclick="add('Caesar', 4.5)">
+<div class="item salad" onclick="add('Caesar', 4.5)">
 <h1>Caesar</h1>
 </div>
-<div class="item salad" id="sl2" onclick="add('House Salad', 4.0)">
-<h1>House Salad</h1>
+<div class="item salad" onclick="add('House Salad', 4.0)">
+<h1>House Salad</h1> -->
 
 </div>
 <div id="cart">
