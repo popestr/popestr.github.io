@@ -7,8 +7,10 @@
 	<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 	<script src="Cookie.js"></script>
 	<script type="text/javascript">
-		var items;
-		var dcs;
+	/*global Cookies
+	  global $*/
+		var items = [];
+		var dcs = [];
 		window.onload=function(){
 			var c = Cookies.get("cart");
 			var tot = Cookies.get("t");
@@ -21,10 +23,10 @@
 			
 		}
 		function addItem(name, type, price, desc, imgurl){
-			document.getElementById("body").innerHTML += "<div class='info' onclick='showInfo('"+name+")''><img src='"+imgurl+"' id='arrow'></div>"+
-			"<div class='item "+type+"' onclick='add('"+name+"', "+price+")'><h1>"+name+"</h1></div><br>"
-			items.add(name);
-			dcs.add(desc);
+			document.getElementById("body").innerHTML += "<div style='text-align: center'><div class=\"info\" onclick=\"showInfo(\'"+name+"\')\"><img src=\"arrow.png\" id=\"arrow\"></div>"+
+			"<div class=\"item "+type+"\" onclick=\"add(\'"+name+"\', "+price+")\"><h1>"+name+"</h1></div></div><br>"
+			items.push(name);
+			dcs.push(desc);
 		}
 		// function showInfo(id){
 		// 	$("#"+id).css("display", "none");
@@ -39,10 +41,12 @@
 			$(".sandwich").css("display", "inline-block");
 			$(".info").css("display", "inline-block");
 			$(".atcsw").css("display", "inline");
+			$("#arrow").css("display", "inline-block");
 		}
 		function sl(){
 			$(".ik").css("display", "none");
 			$(".salad").css("display", "block");
+			$("#arrow").css("display", "inline-block");
 		}
 		function home(){
 			$(".ik").css("display", "block");
@@ -52,6 +56,7 @@
 			$("#items").css("display", "none");
 			$("#ec").css("display", "none");
 			$("#sr").css("display", "none");
+			$("#arrow").css("display", "none");
 		}
 		function showInfo(a){
 
@@ -263,9 +268,9 @@
 		}
 	</style>
 </head>
-<body id="body">
+<body><span id="body">
 <div class="contain"><span onclick="home()" style="cursor: pointer;">
-<img src="logo.png" id='logo'><br><span id="home">Sandwich Shoppe</span></span><br><br>
+<img src="logo.png" id="logo"><br><span id="home">Sandwich Shoppe</span></span><br><br>
 <span id="vc" onclick="vc()">View Cart</span><br>
 <div class="ik" id="sw" onclick="sw()">
 	<h1>Sandwiches</h1>
@@ -289,7 +294,8 @@
 </div>
 <div class="item salad" onclick="add('House Salad', 4.0)">
 <h1>House Salad</h1> -->
-
+</span>
+</div>
 </div>
 <div id="cart">
 </div>
