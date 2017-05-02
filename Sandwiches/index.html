@@ -7,6 +7,7 @@
 	<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 	<script src="Cookie.js"></script>
 	<script type="text/javascript">
+	"use strict";
 	/*global Cookies
 	  global $*/
 	  class Item{
@@ -22,7 +23,7 @@
 		window.onload=function(){
 			var c = Cookies.get("cart");
 			var tot = Cookies.get("t");
-			if(typeof c != "undefined"){
+			if(typeof c != "undefined" && JSON.parse(c).length > 0){
 				c = JSON.parse(c);
 				$("#vc").text("View Cart ("+c.length+")");
 				$("#total").text("Total: $"+parseFloat(tot).toFixed(2));
@@ -36,6 +37,9 @@
 						row.insertCell(2).innerHTML = "<input type='text' id='r"+x+"' style='width: 100%; height: 100%;box-sizing: border-box; -webkit-box-sizing:border-box;' onkeyup='update(this.id)'>"
 					else
 						row.insertCell(2).innerHTML = "<input type='text' id='r"+x+"' style='width: 100%; height: 100%;box-sizing: border-box; -webkit-box-sizing:border-box;' onkeyup='update(this.id)' value='"+r+"'>"
+					var c3 = row.insertCell(3);
+					c3.innerHTML = "<img src='x.png' class='cartx' onclick='del("+row.rowIndex+")'>";
+					c3.className = "delcell";
 			}
 			}
 			addItem("Fairfax Cubano", "sandwich", "6.50", "Sliced Honey Ham; Sliced Smoked Turkey; Swiss Cheese; Stone Ground Mustard; Sliced Pickle; Torta Roll", "sandwich.png");
@@ -88,6 +92,23 @@
 			$(".salad").css("display", "inline-block");
 			$(".arrow").css("display", "inline-block");
 		}
+		function regenTable(c){
+			var table = document.getElementById("items");
+			table.innerHTML = "<tr><th>Item</th><th>Price</th><th>Special Requests (Optional)</th></tr>";
+			for(var z = 0; z < c.length; z++){
+					var row = table.insertRow();
+					row.insertCell(0).innerHTML = c[z].n;
+					row.insertCell(1).innerHTML = "$" + c[z].p.toFixed(2);
+					var r = c[z].req;
+					if(typeof r == "undefined")
+						row.insertCell(2).innerHTML = "<input type='text' id='r"+z+"' style='width: 100%; height: 100%;box-sizing: border-box; -webkit-box-sizing:border-box;' onkeyup='update(this.id)'>"
+					else
+						row.insertCell(2).innerHTML = "<input type='text' id='r"+z+"' style='width: 100%; height: 100%;box-sizing: border-box; -webkit-box-sizing:border-box;' onkeyup='update(this.id)' value='"+r+"'>"
+					var c3 = row.insertCell(3);
+					c3.innerHTML = "<img src='x.png' class='cartx' onclick='del("+row.rowIndex+")'>";
+					c3.className = "delcell";
+			}
+		}
 		function home(){
 			$("#bod").css("display", "block");
 			$(".salad").css("display", "none");
@@ -108,7 +129,7 @@
 			for(var x = 0; x < top.length; x++){
 				retstring += top[x]+"<br>";
 			}
-			$("#info").html("<img src='x.png' id='closer' onclick='remd()'><h2>"+name+"</h2><br><p>"+retstring+"</p><br><input type='text' id='sreq' placeholder='Enter a special request...'><br><br><button onclick=\"add('"+name+"', "+price+", document.getElementById('sreq').value)\">Add to Cart</button><br><br>");
+			$("#info").html("<img src='x.png' id='closer' onclick='remd()'><h2>"+name+"</h2><br><p>"+retstring+"</p><br><input type='text' id='sreq' placeholder='Enter a special request...'><br><br><span class='quant'>Quantity: </span><input class='numsel' value='1' type='number' name='quantity' min='1' max='10'><br><br><button onclick=\"add('"+name+"', "+price+", document.getElementById('sreq').value)\">Add to Cart</button><br><br>");
 			$("#dark").css("display", "block");
 			$("#info").css("display", "block");
 		}
@@ -127,8 +148,9 @@
 			$(".sandwich").css("display", "none");
 			$("#cart").css("display", "block");
 			var c = Cookies.get("cart");
-			if(typeof c == "undefined"){
+			if(typeof c == "undefined" || JSON.parse(c).length == 0){
 				$("#cart").text("Your cart is empty.");
+				$("#vc").text("View Cart")
 			}
 			else{
 				$("#sr").css("display", "block");
@@ -153,6 +175,39 @@
 			$("#total").text("");
 
 		}
+		function del(i){
+			console.log(i);
+			var c = Cookies.get("cart");
+			var tot = Cookies.get("t");
+			var table = document.getElementById("items");
+			table.deleteRow(i);
+			c = JSON.parse(c);
+			console.log(c);
+			console.log(i);
+			var price = c[i - 1].p;
+			tot = parseFloat(tot);
+			tot -= parseFloat(price);
+			console.log(c.length);
+			if(c.length > 1){
+				c.splice(i, 1);
+				console.log(c);
+				$("#vc").text("View Cart ("+c.length+")");
+				$("#cart").text("You have "+c.length+" items in your cart.");
+				$("#total").text("Total: $" + parseFloat(tot.toFixed(2)));
+			}
+			else{
+				c = [];
+				tot = 0;
+				$("#total").css("display", "none");
+				$("#items").css("display", "none");
+				$("#cart").text("Your cart is empty. ");
+				$("#vc").text("View Cart");
+				$("#ec").css("display", "none");
+			}
+			regenTable(c);
+			Cookies.set("cart", JSON.stringify(c));
+			Cookies.set("t", tot.toFixed(2));
+		}
 		function add(sw, p, desc){
 			remd();
 			var c = Cookies.get("cart");
@@ -175,6 +230,10 @@
 			row.insertCell(0).innerHTML = sw;
 			row.insertCell(1).innerHTML = "$" + p.toFixed(2);
 			row.insertCell(2).innerHTML = "<input type='text' id='r"+x+"' style='width: 100%; height: 100%;box-sizing: border-box; -webkit-box-sizing:border-box;' onkeyup='update(this.id)' value='"+desc+"'>";
+			var c3 = row.insertCell(3);
+			c3.innerHTML = "<img src='x.png' class='cartx' onclick='del("+row.rowIndex+")'>";
+			c3.className = "delcell";
+			
 			x++;
 			c.push(new Item(sw, p, desc));
 			tot = tot + p;
@@ -209,7 +268,7 @@
             user-select: none;
 			cursor: default;
 			font-family: Roboto, sans-serif;
-			font-size: 20px;
+			font-size: 1.5vw;
 			background-color: rgb(230, 230, 250);
 			color: rgb(0, 182, 207);
 		}
@@ -245,6 +304,12 @@
 			background-image: url(sandwich.jpg);
 			background-size: cover;
 		}
+		.cartx{
+			position: relative;
+			width: 1.5vw;
+			height: 1.5vw;
+			cursor: pointer;
+		}
 		#sl{
 			background-image: url(salad.jpg);
 			background-size: cover;
@@ -267,6 +332,7 @@
 		}
 		h1{
 			background-color: rgba(255,255,255,0.6);
+			font-size: 2vw;
 		}
 		p{
 			margin-bottom: 20px;
@@ -277,14 +343,14 @@
 		}
 		.sal{
 			z-index: -3;
-			transform: translateY(-70%);
+			transform: translateY(-50%);
 		}
 		#total{
 			display: none;
 		}
 		.item{
 			width: 33%;
-			height: 200px;
+			height: 30vh;
 			margin: 0 auto;
 			border: 1px solid black;
 			display: none;
@@ -303,7 +369,6 @@
 			display: none;
 			margin-bottom: 0px;
 			color: black;
-			display: none;
 		}
 		#items{
 			margin-left:auto; 
@@ -311,8 +376,11 @@
 			display: none;
 			border-color: black;
 		}
-		table,th,td{
+		th,td{
 			border: 1px solid black;
+		}
+		.delcell{
+			border: none;
 		}
 		td{
 			text-align: center;
