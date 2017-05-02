@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Sandwich Shop</title>
+	<title>Signature Line Sandwiches</title>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<link rel="shortcut icon" type="image/png" href="logo.png" />
 	<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
@@ -9,8 +9,16 @@
 	<script type="text/javascript">
 	/*global Cookies
 	  global $*/
+	  class Item{
+	  	constructor(name, price, request){
+	  		this.n = name;
+	  		this.p = price;
+	  		this.r = request;
+	  	}
+	  }
 		var items = [];
 		var dcs = [];
+		var x = 0;
 		window.onload=function(){
 			var c = Cookies.get("cart");
 			var tot = Cookies.get("t");
@@ -18,13 +26,43 @@
 				c = JSON.parse(c);
 				$("#vc").text("View Cart ("+c.length+")");
 				$("#total").text("Total: $"+parseFloat(tot).toFixed(2));
+			var table = document.getElementById("items");
+			for(x = x; x < c.length; x++){
+					var row = table.insertRow();
+					row.insertCell(0).innerHTML = c[x].n;
+					row.insertCell(1).innerHTML = "$" + c[x].p.toFixed(2);
+					var r = c[x].req;
+					if(typeof r == "undefined")
+						row.insertCell(2).innerHTML = "<input type='text' id='r"+x+"' style='width: 100%; height: 100%;box-sizing: border-box; -webkit-box-sizing:border-box;' onkeyup='update(this.id)'>"
+					else
+						row.insertCell(2).innerHTML = "<input type='text' id='r"+x+"' style='width: 100%; height: 100%;box-sizing: border-box; -webkit-box-sizing:border-box;' onkeyup='update(this.id)' value='"+r+"'>"
 			}
-			addItem("Reuben", "sandwich", "3.50", "A sandwich", "sandwich.png");
+			}
+			addItem("Fairfax Cubano", "sandwich", "6.50", "Sliced Honey Ham; Sliced Smoked Turkey; Swiss Cheese; Stone Ground Mustard; Sliced Pickle; Torta Roll", "sandwich.png");
+			addItem("Chicken Po-Boy", "sandwich", "6.50", "Seasoned Chicken Breast; Sliced Cheddar Cheese; Red Leaf Lettuce; Tomato; Sliced Red Onion; Creamy Chipotle Mayo; French Roll", "sandwich.png");
+			addItem("Smoked Turkey Apple Cheddar", "sandwich", "6.50", "Sliced Smoked Turkey; Red Leaf Lettuce; Sliced Cheddar Cheese; Apple Cabbage Slaw; Focaccia Roll", "sandwich.png");
+			addItem("Ciabatta Caprese", "sandwich", "6.50", "Mozzarella Cheese; Tomato, Spinach, & Basil; Creamy Italian Dressing; Ciabatta Roll", "sandwich.png");
+			addItem("California Turkey Wrap", "sandwich", "6.50", "Smoked Turkey; Chopped Romaine; Diced Tomatoes; Diced Red Onions; Diced Avocado; Creamy Chipotle Dressing; Spinach Wrap", "sandwich.png");
+			addItem("Southwestern Chicken Salad", "salad", "6.50", "Seasoned Chicken Breast; Kale & Romaine Mix; Roasted Corn and Black Beans; Grape Tomato; Shredded Cheddar Cheese; Tortilla Strips; Creamy Chipotle Dressing", "salad.png");
+			addItem("Caesar Chicken Salad", "salad", "6.50", "Seasoned Chicken Breast; Kale & Romaine Mix; Parmesan Cheese; Parmesan Crisps; Caesar Dressing", "salad.png");
+			addItem("Fall Harvest Salad", "salad", "6.50", "Seasoned Chicken Breast; Kale & Romaine Mix; Grape Tomato Halves; Sliced Red Onions; Apple Chips; Bleu Cheese Crumbles; Poppy Seed Vinaigrette Dressing", "salad.png");
+			addItem("Summer Berry Salad", "salad", "6.50", "Seasoned Chicken Breast; Spinach; Red Grape; Sliced Strawberries; Blueberries; Mandarin Oranges; Glazed Walnuts; Poppy Seed Vinaigrette Dressing", "salad.png");
+			addItem("Classic Caf\xE9 Grilled Chicken Salad", "salad", "6.50", "Seasoned Chicken Breast; Kale & Romaine Mix; Grape Tomato Halves; Sliced Cucumber; Sliced Red Onions; Grated Carrots; Ranch Dressing", "salad.png");
+			
 			
 		}
+		function update(id){
+			console.log(id);
+			var c = JSON.parse(Cookies.get("cart"));
+			var i = parseInt(id.substring(1,2));
+			c[i].req = document.getElementById(id).value;
+			console.log(c[i].req);
+			var cc = JSON.stringify(c);
+			Cookies.set("cart", cc);
+		}
 		function addItem(name, type, price, desc, imgurl){
-			document.getElementById("body").innerHTML += "<div style='text-align: center'><div class=\"info\" onclick=\"showInfo(\'"+name+"\')\"><img src=\"arrow.png\" id=\"arrow\"></div>"+
-			"<div class=\"item "+type+"\" onclick=\"add(\'"+name+"\', "+price+")\"><h1>"+name+"</h1></div></div><br>"
+			document.getElementById("bod").innerHTML += "<span style='text-align: center' class='holder "+type.substring(0,3)+"'>"+
+			"<div class=\"item "+type+"\" onclick='showInfo(\""+name+"\", "+price+", \""+desc+"\")'><h1 class='in'>"+name+"</h1></div></span><br>"
 			items.push(name);
 			dcs.push(desc);
 		}
@@ -39,37 +77,56 @@
 		function sw(){
 			$(".ik").css("display", "none");
 			$(".sandwich").css("display", "inline-block");
-			$(".info").css("display", "inline-block");
+			$(".san").css("display", "block");
 			$(".atcsw").css("display", "inline");
-			$("#arrow").css("display", "inline-block");
+			$(".arrow").css("display", "inline-block");
 		}
 		function sl(){
 			$(".ik").css("display", "none");
-			$(".salad").css("display", "block");
-			$("#arrow").css("display", "inline-block");
+			$(".sal").css("display", "block");
+			$(".san").css("display", "none");
+			$(".salad").css("display", "inline-block");
+			$(".arrow").css("display", "inline-block");
 		}
 		function home(){
-			$(".ik").css("display", "block");
+			$("#bod").css("display", "block");
 			$(".salad").css("display", "none");
 			$(".sandwich").css("display", "none");
+			$(".holder").css("display", "none");
 			$("#cart").css("display", "none");
 			$("#items").css("display", "none");
 			$("#ec").css("display", "none");
 			$("#sr").css("display", "none");
-			$("#arrow").css("display", "none");
+			$(".arrow").css("display", "none");
+			$("#vc").css("display", "block");
+			$(".ik").css("display", "block");
+			$("#total").css("display", "none");
 		}
-		function showInfo(a){
-
+		function showInfo(name, price, desc){
+			var retstring = "";
+			var top = desc.split("; ");
+			for(var x = 0; x < top.length; x++){
+				retstring += top[x]+"<br>";
+			}
+			$("#info").html("<img src='x.png' id='closer' onclick='remd()'><h2>"+name+"</h2><br><p>"+retstring+"</p><br><input type='text' id='sreq' placeholder='Enter a special request...'><br><br><button onclick=\"add('"+name+"', "+price+", document.getElementById('sreq').value)\">Add to Cart</button><br><br>");
+			$("#dark").css("display", "block");
+			$("#info").css("display", "block");
+		}
+		function remd(){
+			$("#dark").css("display", "none");
+			$("#info").css("display", "none");
 		}
 		function vc(){
-			$("#ec").css("display", "block");
+			$(".arrow").css("display", "none");
+			$("#bod").css("display", "none");
+			$("#total").css("display", "block");
+			$("#vc").css("display", "none");
 			$(".ik").css("display", "none");
+			$(".holder").css("display", "none");
 			$(".salad").css("display", "none");
 			$(".sandwich").css("display", "none");
 			$("#cart").css("display", "block");
 			var c = Cookies.get("cart");
-			var ps = Cookies.get("prices");
-			console.log(c);
 			if(typeof c == "undefined"){
 				$("#cart").text("Your cart is empty.");
 			}
@@ -77,17 +134,10 @@
 				$("#sr").css("display", "block");
 				$("#items").css("display", "table");
 				c = JSON.parse(c);
-				ps = JSON.parse(ps);
-				console.log("ayy", c);
 				$("#cart").html("You have " + c.length + " items in your cart.");
 				$("#cc").css("display", "block");
-				for(var x = 0; x < ps.length; x++){
-					var table = document.getElementById("items");
-					var row = table.insertRow();
-					row.insertCell(0).innerHTML = c[x];
-					row.insertCell(1).innerHTML = "$" + ps[x].toFixed(2);
-					row.insertCell(2).innerHTML = "<input type='text' style='width: 100%; height: 100%;box-sizing: border-box; -webkit-box-sizing:border-box;'>"
-				}
+				$("#ec").css("display", "block");
+				
 			}
 
 		}
@@ -103,30 +153,35 @@
 			$("#total").text("");
 
 		}
-		function add(sw, p){
+		function add(sw, p, desc){
+			remd();
 			var c = Cookies.get("cart");
-			var ps = Cookies.get("prices");
 			var tot = Cookies.get("t");
-			console.log(p);
+			var table = document.getElementById("items");
 			if(typeof tot == "undefined")
 				tot = 0.0;
 			else
 				tot = parseFloat(tot);
 			if(typeof c == "undefined"){
 				c = [];
-				ps = [];
+				//ps = [];
 			}
 			else{
 				c = JSON.parse(c);
-				ps = JSON.parse(ps);
+				//ps = JSON.parse(ps);
 			}
-			c.push(sw);
-			ps.push(p);
+			console.log(desc);
+			var row = table.insertRow();
+			row.insertCell(0).innerHTML = sw;
+			row.insertCell(1).innerHTML = "$" + p.toFixed(2);
+			row.insertCell(2).innerHTML = "<input type='text' id='r"+x+"' style='width: 100%; height: 100%;box-sizing: border-box; -webkit-box-sizing:border-box;' onkeyup='update(this.id)' value='"+desc+"'>";
+			x++;
+			c.push(new Item(sw, p, desc));
 			tot = tot + p;
 			tot = tot.toFixed(2);
 			console.log(tot);
 			Cookies.set("cart", JSON.stringify(c));
-			Cookies.set("prices", JSON.stringify(ps));
+			//Cookies.set("prices", JSON.stringify(ps));
 			Cookies.set("t", parseFloat(tot));
 			$("#vc").text("View Cart ("+c.length+")");
 			// var table = document.getElementById("items");
@@ -158,12 +213,18 @@
 			background-color: rgb(230, 230, 250);
 			color: rgb(0, 182, 207);
 		}
+		.in{
+			z-index: 1;
+			position: relative;
+			transform: translateY(50%);
+		}
 		#logo{
 			width: 10%;
 			height: 10%;
 		}
-		.contain{
+		.contain, #cart, #ec, #total{
 			text-align: center;
+			margin: 0 auto;
 		}
 		.ik{
 			width: 50%;
@@ -182,7 +243,7 @@
 		}
 		#sw{
 			background-image: url(sandwich.jpg);
-			background-size: 115%;
+			background-size: cover;
 		}
 		#sl{
 			background-image: url(salad.jpg);
@@ -204,21 +265,36 @@
 			margin: 0 auto;
 			float: right;
 		}
-		h1, p{
+		h1{
 			background-color: rgba(255,255,255,0.6);
 		}
-
+		p{
+			margin-bottom: 20px;
+		}
+		.san{
+			z-index: -5;
+			transform: translateY(-5%);
+		}
+		.sal{
+			z-index: -3;
+			transform: translateY(-70%);
+		}
+		#total{
+			display: none;
+		}
 		.item{
-			width: 30%;
-			height: 100px;
+			width: 33%;
+			height: 200px;
 			margin: 0 auto;
-			margin-top: 10px;
 			border: 1px solid black;
 			display: none;
 			background-position: center;
 			margin-bottom: 0px;
 			color: black;
 			text-align: center;
+			position: relative;
+			z-index: 0;
+			cursor: pointer;
 		}
 		.info{
 			height: 50px;
@@ -238,17 +314,68 @@
 		table,th,td{
 			border: 1px solid black;
 		}
+		td{
+			text-align: center;
+		}
 		th,td{
 			width: 30%;
 			height: 10%;
 		}
-		#arrow{
+		.arrow{
 			width: 100%;
 			height: 50px;
+		}
+		.ib{
+			position: absolute;
+			left: 115%;
+			top: 25%;
+			z-index: 40;
+			height: 100px;
+			width: 100px;
+			cursor: pointer;
+		}
+		#info{
+			position: fixed;
+			width: 50%;
+			left: 50%;
+			top: 50%;
+			transform: translateX(-50%) translateY(-50%);
+			z-index: 50;
+			text-align: center;
+			background-color: white;
+			text-align: center;
+			display: none;
+		}
+		h2{
+			margin-bottom: 0;
+		}
+		#dark{
+			display: none;
+			width: 100%;
+			height: 100%;
+			z-index: 50;
+			background-color: black;
+			opacity: 0.7;
+			-moz-opacity: 0.7;
+			background-repeat:no-repeat;
+			background-position:center;
+			position: fixed;
+			top: 0px;
+			left: 0px;
+			
 		}
 		.sandwich{
 			background-image: url(sandwich.jpg);
 			background-size: 115%;
+		}
+		#closer{
+			position: absolute;
+			left: 100%;
+			transform: translateX(-50px);
+			top: 0%;
+			width: 50px;
+			height: 50px;
+			cursor: pointer;
 		}
 		.salad{
 			background-image: url(salad.jpg);
@@ -263,22 +390,28 @@
 			cursor: pointer;
 		}
 		#cart{
-			margin-top: 20px;
+			/*margin-top: 20px;*/
 			display: none;
+		}
+		.th{
+			display: inline-block;
+			vertical-align: middle;
 		}
 	</style>
 </head>
-<body><span id="body">
+<body>
+<div id="dark"></div>
 <div class="contain"><span onclick="home()" style="cursor: pointer;">
-<img src="logo.png" id="logo"><br><span id="home">Sandwich Shop</span></span><br><br>
-<span id="vc" onclick="vc()">View Cart</span><br>
+<img src="logo.png" id="logo"><br><span id="home">Signature Line Sandwiches</span></span><br><br>
+<span id="vc" onclick="vc()">View Cart</span><br><br>
+<span id="bod">
 <div class="ik" id="sw" onclick="sw()">
-	<h1>Sandwiches</h1>
+	<h1>Sandwiches/Wraps</h1>
 </div>
 <div class="ik" id="sl" onclick="sl()">
 	<h1>Salads</h1>
 </div>
-
+<div id="info"></div>
 <!-- <div class="info" onclick="showInfo('Reuben')"><img src="arrow.png" id="arrow"></div>
 <div class="item sandwich" onclick="add('Reuben', 3.0)">
 	<h1>Reuben</h1>
@@ -298,19 +431,20 @@
 </div>
 </div>
 <div id="cart">
-</div>
-<div id="cc"></div><br><br><br>
+</div><br>
+<!--<div id="cc"></div><br><br><br>-->
 <table id="items">
 		<tr>
 			<th>Item</th>
 			<th>Price</th>
+			<th>Special Requests (Optional)</th>
 		</tr>
 	</table><br>
-<div id="total"></div><br>
-<div class="center">
+
 <!-- <textarea id="sr" placeholder="Special requests (optional)" rows="5" cols="40"></textarea><br> -->
-</div><br><br>
+<div id="total"></div><br>
 <div id="ec" onclick="ec()">Empty Cart</div>
+
 </div>
 </body>
 </html>
