@@ -32,11 +32,11 @@
 					var row = table.insertRow();
 					row.insertCell(0).innerHTML = c[x].n;
 					row.insertCell(1).innerHTML = "$" + c[x].p.toFixed(2);
-					var r = c[x].req;
+					var r = c[x].r;
 					if(typeof r == "undefined")
-						row.insertCell(2).innerHTML = "<input type='text' id='r"+x+"' style='width: 100%; height: 100%;box-sizing: border-box; -webkit-box-sizing:border-box;' onkeyup='update(this.id)'>"
+						row.insertCell(2).innerHTML = "<input type='text' class='sreq' id='r"+x+"' style='width: 100%; height: 100%;box-sizing: border-box; -webkit-box-sizing:border-box;' onkeyup='update(this.id)'>"
 					else
-						row.insertCell(2).innerHTML = "<input type='text' id='r"+x+"' style='width: 100%; height: 100%;box-sizing: border-box; -webkit-box-sizing:border-box;' onkeyup='update(this.id)' value='"+r+"'>"
+						row.insertCell(2).innerHTML = "<input type='text' class='sreq' id='r"+x+"' style='width: 100%; height: 100%;box-sizing: border-box; -webkit-box-sizing:border-box;' onkeyup='update(this.id)' value='"+r+"'>"
 					var c3 = row.insertCell(3);
 					c3.innerHTML = "<img src='x.png' class='cartx' onclick='del("+row.rowIndex+")'>";
 					c3.className = "delcell";
@@ -59,8 +59,8 @@
 			console.log(id);
 			var c = JSON.parse(Cookies.get("cart"));
 			var i = parseInt(id.substring(1,2));
-			c[i].req = document.getElementById(id).value;
-			console.log(c[i].req);
+			console.log(i);
+			c[i].r = document.getElementById(id).value;
 			var cc = JSON.stringify(c);
 			Cookies.set("cart", cc);
 		}
@@ -92,6 +92,9 @@
 			$(".salad").css("display", "inline-block");
 			$(".arrow").css("display", "inline-block");
 		}
+		function makePHP(){
+			window.alert("");
+		}
 		function regenTable(c){
 			var table = document.getElementById("items");
 			table.innerHTML = "<tr><th>Item</th><th>Price</th><th>Special Requests (Optional)</th></tr>";
@@ -99,17 +102,18 @@
 					var row = table.insertRow();
 					row.insertCell(0).innerHTML = c[z].n;
 					row.insertCell(1).innerHTML = "$" + c[z].p.toFixed(2);
-					var r = c[z].req;
-					if(typeof r == "undefined")
-						row.insertCell(2).innerHTML = "<input type='text' id='r"+z+"' style='width: 100%; height: 100%;box-sizing: border-box; -webkit-box-sizing:border-box;' onkeyup='update(this.id)'>"
+					var r = c[z].r;
+					if(typeof r == "undefined" || r == "")
+						row.insertCell(2).innerHTML = "<input type='text' class='sreq' id='r"+z+"' style='width: 100%; height: 100%;box-sizing: border-box; -webkit-box-sizing:border-box;' onkeyup='update(this.id)'>"
 					else
-						row.insertCell(2).innerHTML = "<input type='text' id='r"+z+"' style='width: 100%; height: 100%;box-sizing: border-box; -webkit-box-sizing:border-box;' onkeyup='update(this.id)' value='"+r+"'>"
+						row.insertCell(2).innerHTML = "<input type='text' class='sreq' id='r"+z+"' style='width: 100%; height: 100%;box-sizing: border-box; -webkit-box-sizing:border-box;' onkeyup='update(this.id)' value='"+r+"'>"
 					var c3 = row.insertCell(3);
 					c3.innerHTML = "<img src='x.png' class='cartx' onclick='del("+row.rowIndex+")'>";
 					c3.className = "delcell";
 			}
 		}
 		function home(){
+			$("form").css("display", "none");
 			$("#bod").css("display", "block");
 			$(".salad").css("display", "none");
 			$(".sandwich").css("display", "none");
@@ -129,7 +133,7 @@
 			for(var x = 0; x < top.length; x++){
 				retstring += top[x]+"<br>";
 			}
-			$("#info").html("<img src='x.png' id='closer' onclick='remd()'><h2>"+name+"</h2><br><p>"+retstring+"</p><br><input type='text' id='sreq' placeholder='Enter a special request...'><br><br><span class='quant'>Quantity: </span><input class='numsel' value='1' type='number' name='quantity' min='1' max='10'><br><br><button onclick=\"add('"+name+"', "+price+", document.getElementById('sreq').value)\">Add to Cart</button><br><br>");
+			$("#info").html("<img src='x.png' id='closer' onclick='remd()'><h2>"+name+"</h2><br><p>"+retstring+"</p><br><input type='text' id='sreq' placeholder='Enter a special request...'><br><br><span class='quant'>Quantity: </span><input class='numsel' value='1' type='number' name='quantity' min='1' max='10' id='numsel'><br><br><button onclick=\"add('"+name+"', "+price+", document.getElementById('sreq').value, document.getElementById('numsel').value)\">Add to Cart</button><br><br>");
 			$("#dark").css("display", "block");
 			$("#info").css("display", "block");
 		}
@@ -150,10 +154,11 @@
 			var c = Cookies.get("cart");
 			if(typeof c == "undefined" || JSON.parse(c).length == 0){
 				$("#cart").text("Your cart is empty.");
-				$("#vc").text("View Cart")
+				$("#vc").text("View Cart");
 			}
 			else{
 				$("#sr").css("display", "block");
+				$("form").css("display", "block");
 				$("#items").css("display", "table");
 				c = JSON.parse(c);
 				$("#cart").html("You have " + c.length + " items in your cart.");
@@ -172,6 +177,7 @@
 			$("#items").css("display", "none");
 			$("#vc").text("View Cart");
 			$("#cart").text("Your cart is empty.");
+			$("form").css("display", "none");
 			$("#total").text("");
 
 		}
@@ -182,18 +188,16 @@
 			var table = document.getElementById("items");
 			table.deleteRow(i);
 			c = JSON.parse(c);
-			console.log(c);
-			console.log(i);
 			var price = c[i - 1].p;
 			tot = parseFloat(tot);
 			tot -= parseFloat(price);
 			console.log(c.length);
 			if(c.length > 1){
-				c.splice(i, 1);
+				c.splice(i - 1, 1);
 				console.log(c);
 				$("#vc").text("View Cart ("+c.length+")");
 				$("#cart").text("You have "+c.length+" items in your cart.");
-				$("#total").text("Total: $" + parseFloat(tot.toFixed(2)));
+				$("#total").text("Total: $" + tot.toFixed(2));
 			}
 			else{
 				c = [];
@@ -208,7 +212,7 @@
 			Cookies.set("cart", JSON.stringify(c));
 			Cookies.set("t", tot.toFixed(2));
 		}
-		function add(sw, p, desc){
+		function add(sw, p, desc, i){
 			remd();
 			var c = Cookies.get("cart");
 			var tot = Cookies.get("t");
@@ -226,17 +230,18 @@
 				//ps = JSON.parse(ps);
 			}
 			console.log(desc);
+			for(var iter = 0; iter < i; iter++){
 			var row = table.insertRow();
 			row.insertCell(0).innerHTML = sw;
 			row.insertCell(1).innerHTML = "$" + p.toFixed(2);
-			row.insertCell(2).innerHTML = "<input type='text' id='r"+x+"' style='width: 100%; height: 100%;box-sizing: border-box; -webkit-box-sizing:border-box;' onkeyup='update(this.id)' value='"+desc+"'>";
+			row.insertCell(2).innerHTML = "<input type='text' class='sreq' id='r"+x+"' style='width: 100%; height: 100%;box-sizing: border-box; -webkit-box-sizing:border-box;' onkeyup='update(this.id)' value='"+desc+"'>";
 			var c3 = row.insertCell(3);
 			c3.innerHTML = "<img src='x.png' class='cartx' onclick='del("+row.rowIndex+")'>";
 			c3.className = "delcell";
-			
 			x++;
 			c.push(new Item(sw, p, desc));
 			tot = tot + p;
+			}
 			tot = tot.toFixed(2);
 			console.log(tot);
 			Cookies.set("cart", JSON.stringify(c));
@@ -259,6 +264,9 @@
 	    #home{
 	    	cursor: pointer;
 	    }
+	    input{
+	    	font-family: Roboto, sans-serif;
+	    }
 		body{
 			-webkit-touch-callout: none;
 	        -webkit-user-select: none;
@@ -271,6 +279,12 @@
 			font-size: 1.5vw;
 			background-color: rgb(230, 230, 250);
 			color: rgb(0, 182, 207);
+		}
+		.sreq{
+			/*background-color: transparent;*/
+			border: 0px solid;
+			font-size: 1.5vw;
+			height: 1.8vw;
 		}
 		.in{
 			z-index: 1;
@@ -286,8 +300,8 @@
 			margin: 0 auto;
 		}
 		.ik{
-			width: 50%;
-			height: 20%;
+			width: 50vw;
+			height: 20vh;
 			margin: 0 auto;
 			margin-top: 10px;
 			border: 1px solid black;
@@ -295,6 +309,10 @@
 			background-position: center;
 			margin-bottom: 0px;
 			color: black;
+		}
+		.ikt{
+			position: relative;
+			top: 25%;
 		}
 		#ec{
 			display: none;
@@ -361,6 +379,14 @@
 			position: relative;
 			z-index: 0;
 			cursor: pointer;
+		}
+		#idin::-webkit-inner-spin-button, #idin::-webkit-outer-spin-button { 
+  			-webkit-appearance: none; 
+  			margin: 0; 
+		}
+		form{
+			text-align: center;
+			display: none;
 		}
 		.info{
 			height: 50px;
@@ -474,10 +500,10 @@
 <span id="vc" onclick="vc()">View Cart</span><br><br>
 <span id="bod">
 <div class="ik" id="sw" onclick="sw()">
-	<h1>Sandwiches/Wraps</h1>
+	<h1 class='ikt'>Sandwiches/Wraps</h1>
 </div>
 <div class="ik" id="sl" onclick="sl()">
-	<h1>Salads</h1>
+	<h1 class='ikt'>Salads</h1>
 </div>
 <div id="info"></div>
 <!-- <div class="info" onclick="showInfo('Reuben')"><img src="arrow.png" id="arrow"></div>
@@ -513,6 +539,9 @@
 <div id="total"></div><br>
 <div id="ec" onclick="ec()">Empty Cart</div>
 
+<form id='ck' action="javascript:void(0);" onsubmit="makePHP()">
+	<input type="number" id="idin" placeholder="Enter ID..." required>
+	<input type="submit" value="Check Out">
 </div>
 </body>
 </html>
