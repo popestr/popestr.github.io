@@ -15,6 +15,7 @@
 	  		this.n = name;
 	  		this.p = price;
 	  		this.r = request;
+	  		this.valCheck = this.n+""+this.p+""+this.r;
 	  	}
 	  }
 		var items = [];
@@ -93,7 +94,18 @@
 			$(".arrow").css("display", "inline-block");
 		}
 		function makePHP(){
-			window.alert("");
+			window.alert("This button will link to PHP at some point in the future...")
+			// console.log("makephp")
+			// $.post({
+			// 	url: "send.php",
+			// 	data: {
+			// 		cart: Cookies.get("cart")
+			// 	},
+			// 	success: function(d, s){
+			// 		$("#ret").html(d);
+			// 	}
+				
+			// });
 		}
 		function regenTable(c){
 			var table = document.getElementById("items");
@@ -213,8 +225,11 @@
 			Cookies.set("t", tot.toFixed(2));
 		}
 		function add(sw, p, desc, i){
+			if(i > 10)
+				i = 10;
 			remd();
 			var c = Cookies.get("cart");
+			//var dc = Cookies.get("dc");
 			var tot = Cookies.get("t");
 			var table = document.getElementById("items");
 			if(typeof tot == "undefined")
@@ -222,12 +237,17 @@
 			else
 				tot = parseFloat(tot);
 			if(typeof c == "undefined"){
+				dc = new Map();
 				c = [];
 				//ps = [];
 			}
 			else{
 				c = JSON.parse(c);
+				//dc = JSON.parse(dc);
 				//ps = JSON.parse(ps);
+			}
+			if(c.indexOf(new Item(sw, p, desc)) != -1){
+				console.log(c.indexOf(new Item(sw, p, desc)));
 			}
 			console.log(desc);
 			for(var iter = 0; iter < i; iter++){
@@ -538,7 +558,7 @@
 <!-- <textarea id="sr" placeholder="Special requests (optional)" rows="5" cols="40"></textarea><br> -->
 <div id="total"></div><br>
 <div id="ec" onclick="ec()">Empty Cart</div>
-
+<div id="ret"></div>
 <form id='ck' action="javascript:void(0);" onsubmit="makePHP()">
 	<input type="number" id="idin" placeholder="Enter ID..." required>
 	<input type="submit" value="Check Out">

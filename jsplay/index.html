@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script type="text/javascript">
+        /*global $*/
+        var a, b, c, m;
+            window.onload=function(){
+                a = "Reuben";
+                b = 3.5;
+                c = "This is a request";
+                var k = createHash(a, c);
+                $("#r").html(k);
+                m = {};
+                m[k] = 1;
+                $("#r").html(m[k]);
+                m = JSON.parse(JSON.stringify(m));
+                $("#r2").html(m[k]);
+            }
+            function createHash(aa, cc){
+                return aa+cc.replace(/\s+/g, '');
+            }
+        </script>
+    </head>
+    <body>
+        <div id="r"></div>
+        <div id="r2"></div>
+    </body>
+</html>
