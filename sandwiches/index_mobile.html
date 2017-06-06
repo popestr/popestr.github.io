@@ -21,6 +21,9 @@
 		var items = [];
 		var dcs = [];
 		var x = 0;
+		function zoom(z){
+			document.body.style.zoom=""+z+"%";
+		}
 		window.onload=function(){
 			var c = Cookies.get("cart");
 			var tot = Cookies.get("t");
@@ -35,9 +38,9 @@
 					row.insertCell(1).innerHTML = "$" + c[x].p.toFixed(2);
 					var r = c[x].r;
 					if(typeof r == "undefined")
-						row.insertCell(2).innerHTML = "<input type='text' class='sreq' id='r"+x+"' style='width: 100%; height: 100%;box-sizing: border-box; -webkit-box-sizing:border-box;' onkeyup='update(this.id)'>"
+						row.insertCell(2).innerHTML = "<input type='text' class='sreq' id='r"+x+"' style='box-sizing: border-box; -webkit-box-sizing:border-box;' onkeyup='update(this.id)'>"
 					else
-						row.insertCell(2).innerHTML = "<input type='text' class='sreq' id='r"+x+"' style='width: 100%; height: 100%;box-sizing: border-box; -webkit-box-sizing:border-box;' onkeyup='update(this.id)' value='"+r+"'>"
+						row.insertCell(2).innerHTML = "<input type='text' class='sreq' id='r"+x+"' style='box-sizing: border-box; -webkit-box-sizing:border-box;' onkeyup='update(this.id)' value='"+r+"'>"
 					var c3 = row.insertCell(3);
 					c3.innerHTML = "<img src='x.png' class='cartx' onclick='del("+row.rowIndex+")'>";
 					c3.className = "delcell";
@@ -121,9 +124,9 @@
 					row.insertCell(1).innerHTML = "$" + c[z].p.toFixed(2);
 					var r = c[z].r;
 					if(typeof r == "undefined" || r == "")
-						row.insertCell(2).innerHTML = "<input type='text' class='sreq' id='r"+z+"' style='width: 100%; height: 100%;box-sizing: border-box; -webkit-box-sizing:border-box;' onkeyup='update(this.id)'>"
+						row.insertCell(2).innerHTML = "<input type='text' class='sreq' id='r"+z+"' style='box-sizing: border-box; -webkit-box-sizing:border-box;' onkeyup='update(this.id)'>"
 					else
-						row.insertCell(2).innerHTML = "<input type='text' class='sreq' id='r"+z+"' style='width: 100%; height: 100%;box-sizing: border-box; -webkit-box-sizing:border-box;' onkeyup='update(this.id)' value='"+r+"'>"
+						row.insertCell(2).innerHTML = "<input type='text' class='sreq' id='r"+z+"' style='box-sizing: border-box; -webkit-box-sizing:border-box;' onkeyup='update(this.id)' value='"+r+"'>"
 					var c3 = row.insertCell(3);
 					c3.innerHTML = "<img src='x.png' class='cartx' onclick='del("+row.rowIndex+")'>";
 					c3.className = "delcell";
@@ -150,7 +153,7 @@
 			for(var x = 0; x < top.length; x++){
 				retstring += top[x]+"<br>";
 			}
-			$("#info").html("<img src='x.png' id='closer' onclick='remd()'><h2>"+name+"</h2><br><p>"+retstring+"</p><br><input type='text' id='sreq' placeholder='Enter a special request...'><br><br><span class='quant'>Quantity: </span><input class='numsel' value='1' type='number' name='quantity' min='1' max='10' id='numsel'><br><br><button class='atc' onclick=\"add('"+name+"', "+price+", document.getElementById('sreq').value, document.getElementById('numsel').value)\">Add to Cart</button><br><br>");
+			$("#info").html("<img src='x.png' id='closer' onclick='remd()'><h2>"+name+"</h2><br><p>"+retstring+"</p><br><input type='text' id='sreq' placeholder='Enter a special request...'><br><br><span class='quant'>Quantity: </span><input class='numsel' value='1' type='number' pattern='[0-9]*' name='quantity' min='1' max='10' id='numsel'><br><br><button class='atc' onclick=\"add('"+name+"', "+price+", document.getElementById('sreq').value, document.getElementById('numsel').value)\">Add to Cart</button><br><br>");
 			$("#dark").css("display", "block");
 			$("#info").css("display", "block");
 		}
@@ -307,11 +310,16 @@
 			/*color: rgb(0, 182, 207);*/
 			color: black;
 		}
-		.sreq, #sreq{
+		.sreq{
 			/*background-color: transparent;*/
 			font-size: 3.5vw;
+			height: 120%;
+			width: 100%;
+		}
+		#sreq{
+			font-size: 3.5vw;
 			height: 3.8vw;
-			width: 70%;
+			width: 50vw;
 		}
 		#idin{
 			width: 20vw;
@@ -537,7 +545,7 @@
 			font-size: 60px;
 		}
 		.numsel{
-			width: 3.8vw;
+			width: 4.1vw;
 			font-size: 3.5vw;
 			height: 3.8vw;
 		}
