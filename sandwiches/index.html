@@ -108,18 +108,21 @@
 			$(".arrow").css("display", "inline-block");
 		}
 		function makePHP(){
-			window.alert("This button will link to PHP at some point in the future...")
-			// console.log("makephp")
-			// $.post({
-			// 	url: "send.php",
-			// 	data: {
-			// 		cart: Cookies.get("cart")
-			// 	},
-			// 	success: function(d, s){
-			// 		$("#ret").html(d);
-			// 	}
+			//window.alert("This button will link to PHP at some point in the future...")
+			console.log("makephp");
+			$.post({
+				url: "send.php",
+				data: {
+					cart: Cookies.get("cart"),
+					id: $("#idin").val()
+				},
+				success: function(d, s){
+					$("#dark").css("display", "block");
+					$("#ret").css("display", "block");
+					$("#ret").html(d);
+				}
 				
-			// });
+			});
 		}
 		function regenTable(c){
 			var table = document.getElementById("items");
@@ -159,7 +162,7 @@
 			for(var x = 0; x < top.length; x++){
 				retstring += top[x]+"<br>";
 			}
-			$("#info").html("<img src='x.png' id='closer' onclick='remd()'><h2>"+name+"</h2><br><p>"+retstring+"</p><br><input type='text' class='sreq' placeholder='Enter a special request...'><br><br><span class='quant'>Quantity: </span><input class='numsel' value='1' type='number' name='quantity' min='1' max='10' id='numsel'><br><br><button onclick=\"add('"+name+"', "+price+", document.getElementById('sreq').value, document.getElementById('numsel').value)\">Add to Cart</button><br><br>");
+			$("#info").html("<img src='x.png' id='closer' onclick='remd()'><h2>"+name+"</h2><br><p>"+retstring+"</p><br><input type='text' id='sreq' placeholder='Enter a special request...'><br><br><span class='quant'>Quantity: </span><input class='numsel' value='1' type='number' name='quantity' min='1' max='10' id='numsel'><br><br><button onclick=\"add('"+name+"', "+price+", document.getElementById('sreq').value, document.getElementById('numsel').value)\">Add to Cart</button><br><br>");
 			$("#dark").css("display", "block");
 			$("#info").css("display", "block");
 		}
@@ -228,6 +231,7 @@
 			else{
 				c = [];
 				tot = 0;
+				$("#total").text("");
 				$("#total").css("display", "none");
 				$("#items").css("display", "none");
 				$("#cart").text("Your cart is empty. ");
@@ -313,7 +317,7 @@
 			background-color: rgb(230, 230, 250);
 			color: rgb(0, 182, 207);
 		}
-		.sreq{
+		.sreq, #sreq{
 			/*background-color: transparent;*/
 			font-size: 1.5vw;
 			height: 1.8vw;
@@ -364,6 +368,16 @@
 		#sl{
 			background-image: url(Fall_Harvest_Salad.jpg);
 			background-size: cover;
+		}
+		#ret{
+			display: none;
+			position: absolute;
+			left: 50%;
+			top: 50%;
+			text-align: center;
+			transform: translateX(-50%) translateY(-50%);
+			z-index: 51;
+			background-color: white;
 		}
 		.center{
 			display: flex;

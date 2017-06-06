@@ -7,7 +7,8 @@ foreach($d as $i){
     $r = $i->r;
     $ret.="<tr><td>".$n."</td><td>$".number_format((float)$p, 2, '.', '')."</td><td>".$r."</td></tr>";
 }
-$ret.="</table>";
+$id = $_POST["id"];
+$ret.="</table><br> Order submitted with ID ".$id;
 echo $ret;
 
 
