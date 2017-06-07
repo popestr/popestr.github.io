@@ -262,7 +262,7 @@
 			var row = table.insertRow();
 			row.insertCell(0).innerHTML = sw;
 			row.insertCell(1).innerHTML = "$" + p.toFixed(2);
-			row.insertCell(2).innerHTML = "<input type='text' class='sreq' id='r"+x+"' style='width: 100%; height: 100%;box-sizing: border-box; -webkit-box-sizing:border-box;' onkeyup='update(this.id)' value='"+desc+"'>";
+			row.insertCell(2).innerHTML = "<input type='text' class='sreq' id='r"+x+"' style='box-sizing: border-box; -webkit-box-sizing:border-box;' onkeyup='update(this.id)' value='"+desc+"'>";
 			var c3 = row.insertCell(3);
 			c3.innerHTML = "<img src='x.png' class='cartx' onclick='del("+row.rowIndex+")'>";
 			c3.className = "delcell";
