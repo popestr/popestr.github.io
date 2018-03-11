@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <script type="text/javascript">
+        function getUrgency(message){
+            var filters = ["taillight", "tail light", "rear light", "headlight", "trunk", "hood", "bonnet", "oil", "leak", "gas", "smoke", "tow", "park", "tire", "flat", "wheel", "deflat", "noise"]
+            message = message.toLowerCase()
+            total = 0
+            filters.forEach(function(value){
+                console.log(message, value, message.search(value))
+                if(message.search(value) > -1){
+                    total +=1
+                }
+            })
+            return total > 0
+        }
+        function timeConverter(UNIX_timestamp){
+            var a = new Date(UNIX_timestamp * 1000);
+            var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+            var year = a.getFullYear();
+            var month = months[a.getMonth()];
+            var date = a.getDate();
+            var hour = a.getHours();
+            var min = a.getMinutes() < 10 ? '0' + a.getMinutes() : a.getMinutes()
+            var sec = a.getSeconds() < 10 ? '0' + a.getSeconds() : a.getSeconds()
+            var ampm = "AM"
+            if(hour/12 > 1){
+                ampm = "PM"
+            }
+            var time = date + ' ' + month + ' ' + year + ' ' + hour + ':' + min + ':' + sec + " "+ ampm;
+            return time;
+        }
+        function getMessages(){
+            $("#out").css("display", "none")
+            $("#ret").css("display", "none")
+            $("#ret").html("<tr><th class='alert'></th><th>Time</th><th>Sender</th><th>Message</th></tr>")
+            
+            $.ajax({url:"https://user.tjhsst.edu/2018bstephan/getMessages?plate="+$("#state").val()+$("#in").val(), 
+            success:function(result){
+                if(result.length > 0){
+                    var parse = result.split("~")
+                    parse = parse.sort()
+                    parse.forEach(function(elem){
+                        var vars = elem.split(";")
+                        var user = vars[0]
+                        var date = vars[1]
+                        var anon = vars[2]
+                        var message = vars[3]
+                        if(anon == 1){
+                            user = "Anonymous"
+                        }
+                        console.log(user, date, anon, message, getUrgency(message))
+                        urg = getUrgency(message)
+                        var addurg = ""
+                        if(urg){
+                            addurg = "<img src='alert.png' class='alertimg'>"
+                        }
+                        $("#ret").css("display", "block")
+                        console.log($("#ret").html())
+                        $("#ret").html($("#ret").html()+"<tr><td class='alert'>"+addurg+"</td><td>"+timeConverter(date)+"<td>"+user+'<td>'+message+"</tr>")
+                    })
+                }
+                else{
+                    $("#out").css("display", "block")
+                    $("#out").html("This user has no messages.")
+                    
+                }
+                
+            }
+            // error:function(jqXHR, textStatus, errorThrown){
+            //     $("#out").css('display', 'block')
+            //     $("#out").html("This user has no messages.")
+            // }
+            })
+        }
+        
+    </script>
+    <style type="text/css">
+        #ret, #out{
+            font-size: 2vw;
+            display:none;
+            color: white;
+            /*width: 50%;*/
+            margin: 0 auto;
+        }
+        table{
+            background-color:grey;
+        }
+        tr{
+            width: 90vw;
+            outline: 2px solid black;
+            background-color: grey;
+        }
+        th, td{
+            font-size: 2vw;
+            min-width:32vw;
+        }
+        .alert{
+            min-width: 4vw;
+        }
+        body{
+            background-image: url("bgblack-resized.png");
+        }
+        div{
+            font-family: 'Roboto', sans-serif;
+            text-align: center;
+        }
+        .alertimg{
+            max-width:1.5vw;
+        }
+        .big{
+            font-family: 'Roboto', sans-serif;
+            width: 55vw;
+            height: 22vh;
+            font-size: 10vh;
+            text-align: center;
+        }
+        .med{
+            font-family: 'Roboto', sans-serif;
+            width: 33vw;
+            height: 11vh;
+            font-size: 5vh;
+            text-align: center;
+        }
+        #logo{
+            max-width: 66vw;
+            max-height: 22vh;
+            display: block;
+            margin:auto;
+        }
+        #state{
+            font-family: 'Roboto', sans-serif;
+            width:11vw;
+            height:23vh;
+            font-size:10vh;
+            text-align:center;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <img src="streettalklogo2_2.png" id="logo">
+        <input class="big" maxlength=8 placeholder="Enter a license plate..." id="in">
+        <select id="state">
+        	<option value="AL">AL</option>
+        	<option value="AK">AK</option>
+        	<option value="AR">AR</option>	
+        	<option value="AZ">AZ</option>
+        	<option value="CA">CA</option>
+        	<option value="CO">CO</option>
+        	<option value="CT">CT</option>
+        	<option value="DC">DC</option>
+        	<option value="DE">DE</option>
+        	<option value="FL">FL</option>
+        	<option value="GA">GA</option>
+        	<option value="HI">HI</option>
+        	<option value="IA">IA</option>	
+        	<option value="ID">ID</option>
+        	<option value="IL">IL</option>
+        	<option value="IN">IN</option>
+        	<option value="KS">KS</option>
+        	<option value="KY">KY</option>
+        	<option value="LA">LA</option>
+        	<option value="MA">MA</option>
+        	<option value="MD">MD</option>
+        	<option value="ME">ME</option>
+        	<option value="MI">MI</option>
+        	<option value="MN">MN</option>
+        	<option value="MO">MO</option>	
+        	<option value="MS">MS</option>
+        	<option value="MT">MT</option>
+        	<option value="NC">NC</option>	
+        	<option value="NE">NE</option>
+        	<option value="NH">NH</option>
+        	<option value="NJ">NJ</option>
+        	<option value="NM">NM</option>			
+        	<option value="NV">NV</option>
+        	<option value="NY">NY</option>
+        	<option value="ND">ND</option>
+        	<option value="OH">OH</option>
+        	<option value="OK">OK</option>
+        	<option value="OR">OR</option>
+        	<option value="PA">PA</option>
+        	<option value="RI">RI</option>
+        	<option value="SC">SC</option>
+        	<option value="SD">SD</option>
+        	<option value="TN">TN</option>
+        	<option value="TX">TX</option>
+        	<option value="UT">UT</option>
+        	<option value="VT">VT</option>
+        	<option value="VA">VA</option>
+        	<option value="WA">WA</option>
+        	<option value="WI">WI</option>	
+        	<option value="WV">WV</option>
+        	<option value="WY">WY</option>
+        </select><br><br>
+        <button class="med" onclick="getMessages()">Get Messages</button><br><br>
+        <table id="ret">
+            <tr>
+                <th></th>
+                <th>Time</th>
+                <th>Sender</th>
+                <th>Message</th>
+            </tr>
+        </table>
+        <span id="out"></span>
+    </div>
+</body>
+</html>
