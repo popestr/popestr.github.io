@@ -1,69 +1,32 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta http-equiv="refresh" content="0; url=home.html" />
-	<title>Meme Central</title>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<title>Homepage</title>
 	<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-	<script type="text/javascript">
-		var prg = 1;
-		var nt = "";
-		window.onload=function(){
-			$("#text").css("animation", "fade 3s");
-			window.setTimeout(function(){show(prg);
-			window.setInterval(function(){show(prg);}, 3000); }, 3000);
-		}
-		function show(i){
-			if(i == 1){
-				$("#text").css("animation", "fadeout 2s forwards");
-				nt = "Welcome to my spiritual experience";
-				
-			}
-			if(i == 3){
-				$("#text").css("animation", "fadeout 2s forwards");
-				nt = "Enjoy your stay";
-			}
-			if(i == 4){
-				$("#text").css("animation", "fadeout 2s forwards");
-				window.setTimeout(function(){
-
-				window.location.href = "home.html";
-				}, 1800);
-			}
-				console.log(i, nt);
-				window.setTimeout(function(){
-					$("#text").text(nt);
-					$("#text").css("animation", "fade 1s");
-					prg++;
-				}, 2000);
-		}
-	</script>
+	<link href="https://fonts.googleapis.com/css?family=VT323" rel="stylesheet">
 	<style type="text/css">
-		@keyframes fade{
-			from{opacity: 0;}
-			to{opacity: 1;}
-		}
-		@keyframes fadeout{
-			from{opacity: 1;}
-			to{opacity: 0;}
-		}
-		@-webkit-keyframes fade {
-    		from { opacity: 0; }
-    		to   { opacity: 1; }
-		}
 		body{
-			font-family: 'Roboto', sans-serif;
 			text-align: center;
+			font-family: 'VT323', sans-serif;
 			font-size: 400%;
 		}
-		span{
-			margin-top: 250px;
-			text-align: center;
-			display: inline-block;
+		::-webkit-scrollbar { 
+    		display: none; 
+		}
+		a{
+			text-decoration: none;
+		}
+		p{
+			font-size: 20px;
+		}
+		.ultraspacer{
+			margin-bottom: 3000px;
 		}
 	</style>
 </head>
 <body>
-	<span id="text">Hello</span>
+
+<p>Maintained by <a href="https://github.com/Popestr">Ryan Pope</a></p>
+
 </body>
 </html>
