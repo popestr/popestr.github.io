@@ -32,17 +32,14 @@ textarea, button{
 }
 #main-sub-container{
 	display: grid;
-	grid-template-columns: 50% 50%;
+	grid-template-columns: 50% 25% 25%;
 }
 #reset-button{
-	grid-column-start: 2;
-	grid-column-end: 2;
+	grid-column: 3;
 }
 #keystroke-counter{
-	grid-column-start:1;
-	grid-column-end: 1;
+	grid-column: 1;
 }
-
 #header-bar{
 	position: fixed;
 	left: 0px;
