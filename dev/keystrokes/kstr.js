@@ -1,3 +1,6 @@
+// Copyright 2020, Ryan Pope
+// github.com/Popestr
+
 function getTextDelta(goal, mod){
 
 }
