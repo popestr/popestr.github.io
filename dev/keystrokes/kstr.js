@@ -1,5 +1,6 @@
 // Copyright 2020, Ryan Pope
 // github.com/Popestr
+// If you're reading this, you've come too far
 
 function getTextDelta(goal, mod){
 
