@@ -13,8 +13,15 @@ function reset(){
 
 function toggleTheme(){
 	let curr = $("#stl").attr("href");
-	if(curr === "styles.css") $("#stl").attr("href", "styles_dark.css");
-	if(curr === "styles_dark.css") $("#stl").attr("href", "styles.css");
+	if(curr === "styles.css"){ 
+		$("#stl").attr("href", "styles_dark.css"); 
+		$("#ico").attr("href", "favicon.ico");
+	}
+	if(curr === "styles_dark.css"){
+		$("#stl").attr("href", "styles.css");
+		$("#ico").attr("href", "favicon_light.ico");
+	}
+
 }
 
 
