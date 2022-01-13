@@ -94,7 +94,7 @@ body {
 }
 
 #logo:hover {
-    content: url("logo_transparent_small_sparkle.png");
+    content: url("logo_transparent_sparkle.svg");
 }
 
 .social-link {

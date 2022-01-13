@@ -30,37 +30,23 @@
 
 .contact-row {
     display: flex;
-    width: 100%;
     align-items: center;
+    color: lightsteelblue;
+    width: 100%;
 }
 
 .contact-icon {
-    height: 2rem;
-    width: 2rem;
-}
-
-.contact-icon, .contact-link {
+    width: 30px;
     display: flex;
     align-items: center;
+    justify-content: center;
 }
 
-.contact-link .copy-icon {
+.copy-icon {
     margin-left: 0.5rem;
 }
 
 .contact-table a {
-    text-decoration: none;
-}
-
-.contact-social-icon {
-    height: 70%;
-}
-
-.contact-link, .contact-link a {
-    color: lightsteelblue;
-}
-
-.contact-link a:hover {
     text-decoration: none;
 }
 
