@@ -11,17 +11,18 @@
 	  gtag('config', 'UA-156111120-1');
 	</script>
 
-	<title>Ryan Pope's Site</title>
+	<title>Contact Ryan Pope</title>
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link rel="stylesheet" href="app.css">
-	<link rel="preload" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,200;0,500;1,500;1,700&display=swap" rel="stylesheet">
-	<link rel="preload" as="image" href="logo_transparent_small_sparkle.png">
+    <link rel="stylesheet" href="contact.css">
+    <link rel="preload" as="image" href="logo_transparent_small_sparkle.png">
+	<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,200;0,500;1,500;1,700&display=swap" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
 	<script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-	<script src="https://kit.fontawesome.com/4f2b2484e3.js" crossorigin="anonymous"></script>
-	<script src="app.js"></script>
+    <script src="https://kit.fontawesome.com/4f2b2484e3.js" crossorigin="anonymous"></script>
+    <script src="app.js"></script>
 
 	<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
 	<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
@@ -56,54 +57,48 @@
 			</a>
 		</div>
 	</div>
-<div id="typed-strings">
-	<p>is a software engineer</p>
-	<p>is a fourth-year at the University of Virginia</p>
-	<p>believes in open-source</p>
-	<p>listens to music 24/7</p>
+<div id="typed-strings-contact">
+	<p>Contact Me</p>
 </div>
-<div class="main-content">
-	<div class="carousel-top">
-		<p class="carousel-header">
-			<span id="name">Ryan Pope </span><span id="typed"></span>
-		</p>
-	</div>
-	<div class="carousel-bottom">
-		<div class="carousel-item" id="carousel-item-0">
-			<a href="Ryan_Pope_Resume.pdf"><div class="link-button">View my resume</div></a>
-		</div>
-		<div class="carousel-item" id="carousel-item-1">
-			<a href="courses.html"><div class="link-button">Learn about the courses I've taken</div></a>
-		</div>
-		<div class="carousel-item" id="carousel-item-2">
-			<a href="about.html"><div class="link-button">Read about my commitment to FOSS</div></a>
-		</div>
-		<div class="carousel-item" id="carousel-item-3">
-			<a href="https://www.last.fm/user/popestr"><div class="link-button">Check out my scrobbles on Last.fm</div></a>
-		</div>
-	</div>
+<div class="contact-content">
+    <span class="contact-header" id="typedContact"></span>
+    <span class="contact-text">
+        <p>I'd love to hear from you -- whether it be a question, comment, or a conversation!</p>
+        <p>You can currently reach me through email or Discord.</p>
+    </span>
+
+    <div class="contact-table">
+        <a href="mailto:ryan@rcpope.net"><div class="contact-row">
+            <div class="contact-icon">
+                <img src="email.png" class="contact-social-icon">
+            </div>
+            <div class="contact-link">ryan@rcpope.net</div>
+        </div></a>
+        <div class="contact-row">
+            <div class="contact-icon">
+                <img src="discord.png" class="contact-social-icon">
+            </div>
+            <div class="contact-link">
+                Popestr#6454 <i class="fas fa-copy copy-icon" onclick="navigator.clipboard.writeText('Popestr#6454'); temporaryStyle('#copied-text-0', 'opacity', '1', 2000);"></i><span class="copied-text" id="copied-text-0">copied to clipboard!</span>
+            </div>
+        </div>
+    </div>
 </div>
 
 <script>
-	$("#carousel-item-0").fadeIn(1000);
 	let maxArrayPos = 0;
-	var typed = new Typed('#typed', {
-	  stringsElement: '#typed-strings',
-	  loop: true,
+	var typedContact = new Typed('#typedContact', {
+	  stringsElement: '#typed-strings-contact',
 	  typeSpeed: 40,
-	  backSpeed: 30,
-	  cursorChar: '_',
-	  backDelay: 5000,
-	  onStringTyped: function(arrayPos, self) {
-		  maxArrayPos = Math.max(maxArrayPos, arrayPos);
-		  let lastIndex = arrayPos != 0 ? arrayPos - 1 : maxArrayPos;
-		  if(lastIndex != arrayPos) {
-			$("#carousel-item-"+lastIndex).hide();
-		  	$("#carousel-item-"+arrayPos).fadeIn(500);
-		  }
-	  }
+	  showCursor: false,
 	});
 </script>
+
+<a class="source-link" href="http://github.com/Popestr/popestr.github.io/contact.html">
+    <div class="source-button">
+        <i class="fas fa-code code-icon"></i> View source
+    </div>
+</a>
 
 <div class="nav-container footer">
 	<a href="https://www.linkedin.com/in/rcpope/" class="social-link"><i class="fab fa-linkedin"></i></a>
@@ -112,8 +107,6 @@
 	</div>
 	<a href="https://www.github.com/Popestr" class="social-link"><i class="fab fa-github"></i></a>
 </div>
-
-<div id="socials"></div>
 
 </body>
 </html>
