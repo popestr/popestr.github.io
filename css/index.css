@@ -1,0 +1,48 @@
+.carousel-top {
+    width: 100%;
+    height: 200px;
+}
+
+.main-content {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    width: 80%;
+    margin: 2rem auto;
+    margin-top: 20vh;
+}
+
+#name {
+    color: lightsteelblue;
+}
+
+.carousel-header {
+    font-size: 3rem;
+    font-family: "JetBrains Mono";
+    margin: 0 15%;
+}
+
+.carousel-item {
+    display: none;
+}
+
+.carousel-item a {
+    text-decoration: none;
+}
+
+.link-button {
+    padding: 1rem;
+    background-color: lightslategray;
+    color: white;
+    border-radius: 2px;
+    -moz-transition: all .2s ease-in;
+    -o-transition: all .2s ease-in;
+    -webkit-transition: all .2s ease-in;
+    transition: all .2s ease-in;
+}
+
+.link-button:hover {
+    background-color: lightsteelblue;
+    color: black;
+    box-shadow: rgba(255, 179, 0, 0.9) 0px 5px, rgba(255, 179, 0, 0.6) 0px 10px, rgba(255, 179, 0, 0.4) 0px 15px, rgba(255, 179, 0, 0.2) 0px 20px, rgba(255, 179, 0, 0.05) 0px 25px;
+}
