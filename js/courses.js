@@ -60,9 +60,13 @@ function toggleCourseGroup(groupHeader) {
 $.getJSON("http://api.rcpope.net/courses_json.php", function (data) {
     let last_sem = "Fall 1969";
     let courseOut = "";
-    let classificationOut = "";
     let languagesOut = "";
+    let classificationOut = "";
     let group = -1;
+
+    // This section is a little janky, and I'm okay with that for now.
+    // Ideally, phase two of this redesign will involve a reactive framework, 
+    // making all this DOM interpolation wizardry wholly unnecessary.
     for (const course of data.courses) {
         let group_header = "";
 
@@ -81,7 +85,7 @@ $.getJSON("http://api.rcpope.net/courses_json.php", function (data) {
         <div class="course ${course.course_classes}" data-classifications="${course.classification} ${course.languages}" data-selectedby="0">
             <span class="course-title">
                 <span class="course-code">${course.course_code}</span>
-                <span class="course-name">${course.course_name}</span>
+                <span class="course-name">${course.course_topic || course.course_name}</span>
             </span>
             <span class="course-icons">
                 <span class="course-classifications">
