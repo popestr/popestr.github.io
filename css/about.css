@@ -1,0 +1,52 @@
+.about-content {
+    width: 60%;
+    margin: 2rem 20%;
+    display:flex;
+    justify-content: space-between;
+}
+
+.about-header {
+    width: 100%;
+    font-size: 2rem;
+    color:lightsteelblue;
+    display:flex;
+    flex-direction: column;
+    justify-content:center;
+}
+
+.about-left {
+    width: 60%;
+    /* overflow: scroll;
+    overflow-x: hidden; */
+}
+
+.about-right {
+    width: 30%;
+}
+
+#about-pic {
+    width: 100%;
+    margin: 16px 0;
+    box-shadow: rgba(135,145,155, 0.9) 5px 5px, rgba(135,145,155, 0.6) 10px 10px, rgba(135,145,155, 0.4) 15px 15px, rgba(135,145,155, 0.2) 20px 20px, rgba(135,145,155, 0.05) 25px 25px;
+}
+
+.about-text p {
+    color: lightslategray;
+    font-size: 1rem;
+    margin: 8px 0 16px 0;
+    line-height: 24px;
+}
+
+.about-text a {
+    color: lightsteelblue;
+    text-decoration: underline;
+}
+
+.about-text a:hover {
+    color: lightsteelblue;
+    text-decoration: none;
+}
+
+#typedCommitment, #typedAbout, #typedAboutSite {
+    min-height: 2.8rem;
+}
