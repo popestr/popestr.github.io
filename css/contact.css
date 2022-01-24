@@ -60,6 +60,10 @@
 
 @media screen and (max-width: 800px) {
     .contact-content {
-        width: 100%;
+        width: 90%;
+    }
+
+    .contact-header {
+        display: none;
     }
 }

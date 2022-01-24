@@ -134,7 +134,7 @@ $.getJSON("http://api.rcpope.net/courses_json.php", function (data) {
     $(".filter-item--theo").click();
 
     $(".filter-list").css("display", "flex");
-    $("#main-course-list").attr("loading", "false");
+    $("#main-course-list").attr("data-loading", "false");
 
     $(".loading-icon-container").css('display', 'none');
 

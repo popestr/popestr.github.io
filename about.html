@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="css/app.css">
     <link rel="stylesheet" href="css/about.css">
     <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/contact.css">
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,200;0,500;1,500;1,700&display=swap"
         rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
@@ -31,6 +32,7 @@
     <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
     <link rel="manifest" href="site.webmanifest">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
 </head>
 
 <body>
@@ -52,7 +54,8 @@
                 </div>
             </a>
         </div>
-        <a href="index.html"><img src="logo_transparent.svg" id="logo"></a>
+        <a href="index.html"><img src="logo_transparent.svg" class="logo" id="header-logo"></a>
+        <div class="mobile-text">About Me</div>
         <div class="nav-menu nav-menu-right">
             <a href="Ryan_Pope_Resume.pdf">
                 <div class="nav-menu-item">
@@ -82,6 +85,7 @@
                     <p><a href="contact.html">Feel free to reach out</a> if there's anything you'd like to chat with me
                         about! I'm always interested in a conversation.</p>
                 </span>
+                <a id="commitment"></a>
                 <span id="typedCommitment"></span>
                 <span class="about-text">
                     <p>One of the things that keeps the software development community so strong is that developers
@@ -111,6 +115,18 @@
         </div>
         <div class="about-right">
             <img id="about-pic" src="me.jpg">
+            <div class="about-contact">
+                <div class="contact-table">
+                    <div class="contact-row">
+                        <div class="contact-icon"><i class="far fa-envelope"></i></div>
+                        <a href="mailto:ryan@rcpope.net" class="contact-link">ryan@rcpope.net</a>
+                    </div>
+                    <div class="contact-row">
+                        <div class="contact-icon"><i class="fab fa-discord"></i></div>
+                        Popestr#6454
+                    </div>
+                </div>
+            </div>
         </div>
 
     </div>
@@ -148,6 +164,25 @@
             &copy; 2018-2021 Ryan Pope
         </div>
         <a href="https://www.github.com/Popestr" class="social-link"><i class="fab fa-github"></i></a>
+    </div>
+
+    <div class="nav-container mobile" id="mobile-menu">
+        <div class="nav-mobile">
+            <a href="about.html" class="nav-mobile-link">
+                <i class="far fa-id-card"></i>
+            </a>
+            <a href="courses.html" class="nav-mobile-link">
+                <i class="fas fa-graduation-cap"></i>
+            </a>
+            <a href="index.html" class="nav-mobile-link"><img src="logo_transparent.svg" class="logo"
+                    id="logo-mobile"></a>
+            <a href="contact.html" class="nav-mobile-link">
+                <i class="fas fa-at"></i>
+            </a>
+            <a href="Ryan_Pope_Resume.pdf" class="nav-mobile-link">
+                <i class="fas fa-file-invoice"></i>
+            </a>
+        </div>
     </div>
 
 </body>

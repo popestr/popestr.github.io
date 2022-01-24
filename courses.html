@@ -31,6 +31,7 @@
     <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
     <link rel="manifest" href="site.webmanifest">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
 </head>
 
 <body>
@@ -52,7 +53,8 @@
                 </div>
             </a>
         </div>
-        <a href="index.html"><img src="logo_transparent.svg" id="logo"></a>
+        <a href="index.html"><img src="logo_transparent.svg" class="logo" id="header-logo"></a>
+        <div class="mobile-text">My Course History</div>
         <div class="nav-menu nav-menu-right">
             <a href="Ryan_Pope_Resume.pdf">
                 <div class="nav-menu-item">
@@ -134,6 +136,25 @@
             &copy; 2018-2021 Ryan Pope
         </div>
         <a href="https://www.github.com/Popestr" class="social-link"><i class="fab fa-github"></i></a>
+    </div>
+
+    <div class="nav-container mobile" id="mobile-menu">
+        <div class="nav-mobile">
+            <a href="about.html" class="nav-mobile-link">
+                <i class="far fa-id-card"></i>
+            </a>
+            <a href="courses.html" class="nav-mobile-link">
+                <i class="fas fa-graduation-cap"></i>
+            </a>
+            <a href="index.html" class="nav-mobile-link"><img src="logo_transparent.svg" class="logo"
+                    id="logo-mobile"></a>
+            <a href="contact.html" class="nav-mobile-link">
+                <i class="fas fa-at"></i>
+            </a>
+            <a href="Ryan_Pope_Resume.pdf" class="nav-mobile-link">
+                <i class="fas fa-file-invoice"></i>
+            </a>
+        </div>
     </div>
 
 </body>
