@@ -57,7 +57,7 @@ function toggleCourseGroup(groupHeader) {
     $(groupHeader).parent().toggleClass("course-group--collapsed");
 }
 
-$.getJSON("http://api.rcpope.net/courses_json.php", function (data) {
+$.getJSON("https://api.rcpope.net/courses_json.php", function (data) {
     let last_sem = "Fall 1969";
     let courseOut = "";
     let languagesOut = "";
