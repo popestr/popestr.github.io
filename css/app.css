@@ -26,9 +26,9 @@ a {
 
 .header {
     position: fixed;
-    top: 10px;
-    left: 10px;
-    width: calc(100% - 20px);
+    top: 0;
+    left: 0;
+    width: 100%;
 }
 
 .footer {
@@ -48,10 +48,14 @@ a {
     cursor: default;
 }
 
+.mobile, .mobile-text {
+    display: none;
+}
+
 .nav-menu {
     display: flex;
     height: 100%;
-    min-width: 500px;
+    min-width: 300px;
 }
 
 .nav-menu a {
@@ -84,11 +88,11 @@ a {
     box-shadow: rgba(255, 179, 0, 0.9) 0px 5px, rgba(255, 179, 0, 0.6) 0px 10px, rgba(255, 179, 0, 0.4) 0px 15px, rgba(255, 179, 0, 0.2) 0px 20px, rgba(255, 179, 0, 0.05) 0px 25px;
 }
 
-#logo {
+.logo {
     height: 100%;
 }
 
-#logo:hover {
+.logo:hover {
     content: url("../logo_transparent_sparkle.svg");
 }
 
@@ -190,7 +194,46 @@ a {
 }
 
 @media screen and (max-width: 800px) {
-    .source-link, .source-button, .footer {
+    .source-link, .source-button, .footer, .nav-menu, .web-header, #header-logo {
         display: none;
+    }
+
+    .copy-icon {
+        display: none !important;
+    }
+
+    .nav-container {
+        justify-content: center;
+    }
+    
+    .mobile {
+        display: flex;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        background-color: #212121;
+    }
+
+    .nav-mobile {
+        display: flex;
+        width: 100%;
+        font-size: 2rem;
+        align-items: center;
+    }
+
+    .nav-mobile-link {
+        width: calc(100% / 3);
+        height: calc(100% - 5px);
+        display:flex;
+        justify-content: center;
+        align-items: center;
+        color: #555555;
+    }
+
+    .mobile-text {
+        display: flex;
+        width: 100%;
+        justify-content: center;
+        align-items: center;
     }
 }

@@ -271,12 +271,6 @@
     min-height: 2.5rem;
 }
 
-@media only screen and (max-width: 800px) {
-    .course {
-        width: 100%;
-    }
-}
-
 /**
  * ==============================================
  * Dot Pulse Loading Icon
@@ -358,3 +352,27 @@
       box-shadow: 10014px 0 0 -5px lightsteelblue;
     }
   }
+
+@media only screen and (max-width: 800px) {
+  .course {
+      width: 100%;
+  }
+
+  .course-group:not(.course-group--collapsed) .course[data-selectedby="0"], .course {
+    display: flex;
+  }
+
+  .courses-header, .courses-menu {
+    display: none;
+  }
+
+  .courses-list {
+    width: 100%;
+  }
+}
+
+@media only screen and (max-width: 1300px) {
+  .courses-list, .courses-menu {
+    width: 100%;
+  }
+}
