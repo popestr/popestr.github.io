@@ -12,14 +12,13 @@
 		gtag('config', 'UA-156111120-1');
 	</script>
 
-	<title>Ryan Pope's Site</title>
+	<title>Contact Ryan Pope</title>
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link rel="stylesheet" href="css/app.css">
-	<link rel="stylesheet" href="css/index.css">
+	<link rel="stylesheet" href="css/contact.css">
 	<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,200;0,500;1,500;1,700&display=swap"
 		rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@100&display=swap" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
 	<script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"
@@ -54,7 +53,7 @@
 			</a>
 		</div>
 		<a href="index.html"><img src="logo_transparent.svg" class="logo" id="header-logo"></a>
-		<div class="mobile-text">Welcome to rcpope.net</div>
+		<div class="mobile-text">Contact Me</div>
 		<div class="nav-menu nav-menu-right">
 			<a href="Ryan_Pope_Resume.pdf">
 				<div class="nav-menu-item">
@@ -63,64 +62,43 @@
 			</a>
 		</div>
 	</div>
-	<div id="typed-strings">
-		<p>is a software engineer</p>
-		<p>is a fourth-year at the University of Virginia</p>
-		<p>believes in open-source</p>
-		<p>listens to music 24/7</p>
+	<div id="typed-strings-contact">
+		<p>Contact Me</p>
 	</div>
-	<div class="main-content">
-		<div class="carousel-top">
-			<p class="carousel-header">
-				<span id="name">Ryan Pope </span><span id="typed"></span>
-			</p>
-		</div>
-		<div class="carousel-bottom">
-			<div class="carousel-item" id="carousel-item-0">
-				<a href="Ryan_Pope_Resume.pdf">
-					<div class="link-button">View my resume</div>
-				</a>
+	<div class="contact-content">
+		<span class="contact-header" id="typedContact"></span>
+		<span class="contact-text">
+			<p>I'd love to hear from you -- whether it be a question, comment, or a conversation!</p>
+			<p>You can currently reach me through email or Discord.</p>
+		</span>
+
+		<div class="contact-table">
+			<div class="contact-row">
+				<div class="contact-icon"><i class="far fa-envelope"></i></div>
+				<a href="mailto:ryan@rcpope.net" class="contact-link">ryan@rcpope.net</a> <i
+					class="fas fa-copy copy-icon"
+					onclick="navigator.clipboard.writeText('ryan@rcpope.net'); temporaryStyle('#copied-text-0', 'opacity', '1', 2000);"></i><span
+					class="copied-text" id="copied-text-0">copied to clipboard!</span>
 			</div>
-			<div class="carousel-item" id="carousel-item-1">
-				<a href="courses.html">
-					<div class="link-button">Learn about the courses I've taken</div>
-				</a>
-			</div>
-			<div class="carousel-item" id="carousel-item-2">
-				<a href="about.html#commitment">
-					<div class="link-button">Read about my commitment to FOSS</div>
-				</a>
-			</div>
-			<div class="carousel-item" id="carousel-item-3">
-				<a href="https://www.last.fm/user/popestr">
-					<div class="link-button">Check out my scrobbles on Last.fm</div>
-				</a>
+			<div class="contact-row">
+				<div class="contact-icon"><i class="fab fa-discord"></i></div>
+				Popestr#6454 <i class="fas fa-copy copy-icon"
+					onclick="navigator.clipboard.writeText('Popestr#6454'); temporaryStyle('#copied-text-1', 'opacity', '1', 2000);"></i><span
+					class="copied-text" id="copied-text-1">copied to clipboard!</span>
 			</div>
 		</div>
 	</div>
 
 	<script>
-		$("#carousel-item-0").fadeIn(1000);
 		let maxArrayPos = 0;
-		var typed = new Typed('#typed', {
-			stringsElement: '#typed-strings',
-			loop: true,
+		var typedContact = new Typed('#typedContact', {
+			stringsElement: '#typed-strings-contact',
 			typeSpeed: 40,
-			backSpeed: 30,
-			cursorChar: '_',
-			backDelay: 3000,
-			onStringTyped: function (arrayPos, self) {
-				maxArrayPos = Math.max(maxArrayPos, arrayPos);
-				let lastIndex = arrayPos > 0 ? arrayPos - 1 : maxArrayPos;
-				if (lastIndex != arrayPos) {
-					$("#carousel-item-" + lastIndex).hide();
-					$("#carousel-item-" + arrayPos).fadeIn(500);
-				}
-			}
+			showCursor: false,
 		});
 	</script>
 
-	<a class="source-link" href="http://github.com/Popestr/popestr.github.io/index.html" target="_blank">
+	<a class="source-link" href="http://github.com/Popestr/popestr.github.io/contact.html" target="_blank">
 		<div class="source-button">
 			<i class="fas fa-code code-icon"></i> View source
 		</div>
@@ -133,8 +111,6 @@
 		</div>
 		<a href="https://www.github.com/Popestr" class="social-link"><i class="fab fa-github"></i></a>
 	</div>
-
-	<div id="socials"></div>
 
 	<div class="nav-container mobile" id="mobile-menu">
 		<div class="nav-mobile">

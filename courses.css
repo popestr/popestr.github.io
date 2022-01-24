@@ -1,0 +1,124 @@
+.courses-content {
+    width: 80%;
+    margin: 2rem 10%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.courses-header {
+    width: 100%;
+    font-size: 2rem;
+    color:lightsteelblue;
+    margin: 2rem 0;
+    display:flex;
+    flex-direction: column;
+    justify-content:center;
+}
+
+.courses-list {
+    width: 70%;
+}
+
+.course-group {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-top: 0.5rem;
+    -moz-transition: all .2s ease-in;
+    -o-transition: all .2s ease-in;
+    -webkit-transition: all .2s ease-in;
+    transition: all .2s ease-in;
+}
+
+.course-group-header, .courses-legend-header {
+    color: lightsteelblue;
+    font-size: 1.3rem;
+}
+
+.course {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    box-sizing: border-box;
+    margin: 0.5rem 0;
+    padding: 1rem;
+    width: calc(100% / 3 - 0.5rem);
+    box-sizing: border-box;
+    border: 2px solid lightslategray;
+    border-radius: 5px;
+    cursor: default;
+    -moz-transition: all .1s ease-in;
+    -o-transition: all .1s ease-in;
+    -webkit-transition: all .1s ease-in;
+    transition: all .1s ease-in;
+}
+
+.course-active {
+    background-color: lightslategray;
+}
+
+.course-alternate .course-name {
+    color: lightsteelblue;
+}
+
+.course-icons {
+    margin-top: 5px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.course-classifications, .course-languages {
+    display: flex;
+}
+
+.course-classifications i {
+    padding-right: 5px;
+}
+
+.course-languages i {
+    padding-left: 5px;
+}
+
+.course-code {
+    color: lightsteelblue;
+}
+
+.course-name {
+    font-style: italic;
+}
+
+.courses-legend {
+    width: 20%;
+    position: fixed;
+    left: 70%;
+    top: 15rem;
+}
+
+.legend-row {
+    padding: 5px;
+    margin: 5px 0;
+    border-radius: 5px;
+    box-sizing: border-box;
+    border: 3px solid lightslategray;
+    -moz-transition: all .1s ease-in;
+    -o-transition: all .1s ease-in;
+    -webkit-transition: all .1s ease-in;
+    transition: all .1s ease-in;
+    cursor: default;
+}
+
+.legend-active {
+    background-color: lightslategray;
+}
+
+#typedCourses {
+    height: 2.5rem;
+}
+
+@media only screen and (max-width: 800px) {
+    .course {
+        width: 100%;
+    }
+}
