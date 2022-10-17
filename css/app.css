@@ -32,6 +32,11 @@ a {
     z-index: 1;
 }
 
+.header-logo-container {
+    display: flex;
+    justify-content: center;
+}
+
 .footer {
     position: fixed;
     bottom: 0px;
