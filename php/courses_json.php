@@ -1,11 +1,15 @@
 <?php
 
-// Page live at http://rcpope.net/courses_json.php
+// Page live at http://api.rcpope.net/courses_json.php
+
+// This is a very simple endpoint to fetch all data from the database.
+// Expects existence of $SECRET_STRING in library.php which can manually refresh the query,
+// otherwise the query will have a rate-limit of once per hour.
 
 include('./library.php');
 header('Content-Type: application/json');
 
-$runQuery = isset($_GET["secret"]) and $_GET["secret"] = $SECRET_STRING;
+$runQuery = isset($_GET["secret"]) and $_GET["secret"] == $SECRET_STRING;
 $res = array();
 $classifications = array();
 $languages = array();
@@ -62,6 +66,7 @@ if ($runQuery and $result = $con->query("SELECT abbreviation, icon_html, longnam
 
 $out["query_time"] = date("Y-m-d H:i:s T", $query_time);
 $out["fresh_query"] = $runQuery;
+$out["time_since_last_query"] = time() - filemtime($filename);
 $out["courses"] = $res;
 $out["classifications"] = $classifications;
 $out["languages"] = $languages;
