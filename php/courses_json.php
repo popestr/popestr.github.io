@@ -19,16 +19,12 @@ $query_time = time();
 date_default_timezone_set('EST');
 
 if (!$runQuery and file_exists($filename)) {
-    if (time() - filemtime($filename) > (60 * 60 * 1000)) { // 1hr rate-limit
-        $runQuery = true;
-    } else {
-        $cache = json_decode(file_get_contents($filename), true);
+    $cache = json_decode(file_get_contents($filename), true);
 
-        $res = $cache["courses"];
-        $classifications = $cache["classifications"];
-        $languages = $cache["languages"];
-        $query_time = filemtime($filename);
-    }
+    $res = $cache["courses"];
+    $classifications = $cache["classifications"];
+    $languages = $cache["languages"];
+    $query_time = filemtime($filename);
 }
 
 if ($runQuery and $result = $con->query("SELECT semester, course_code, course_name, course_topic, classification, code_available, languages, summary, 
@@ -66,7 +62,6 @@ if ($runQuery and $result = $con->query("SELECT abbreviation, icon_html, longnam
 
 $out["query_time"] = date("Y-m-d H:i:s T", $query_time);
 $out["fresh_query"] = $runQuery;
-$out["time_since_last_query"] = time() - filemtime($filename);
 $out["courses"] = $res;
 $out["classifications"] = $classifications;
 $out["languages"] = $languages;
