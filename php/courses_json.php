@@ -3,8 +3,7 @@
 // Page live at http://api.rcpope.net/courses_json.php
 
 // This is a very simple endpoint to fetch all data from the database.
-// Expects existence of $SECRET_STRING in library.php which can manually refresh the query,
-// otherwise the query will have a rate-limit of once per hour.
+// Expects existence of $SECRET_STRING in library.php which can manually refresh the query.
 
 include('./library.php');
 header('Content-Type: application/json');
