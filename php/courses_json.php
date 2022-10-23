@@ -1,10 +1,13 @@
 <?php
-
-// Page live at http://api.rcpope.net/courses_json.php
-
-// This is a very simple endpoint to fetch all data from the database.
-// Expects existence of $SECRET_STRING in library.php which can manually refresh the query.
-
+/**
+* @author Ryan Pope (@Popestr) <ryan@rcpope.net>
+* This endpoint is live at http://api.rcpope.net/courses_json.php
+*
+* This is a very simple endpoint to fetch all data from the database.
+* Expects existence of $SECRET_STRING in library.php which can manually refresh the query.
+* 
+* NOTE: library.php must also create a sql $con to use when running the query.
+*/
 include('./library.php');
 header('Content-Type: application/json');
 
