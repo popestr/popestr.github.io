@@ -7,7 +7,7 @@ body {
     background-color: #121212;
     color: white;
     padding-bottom: calc(3rem + 5px);
-    padding-top: calc(3rem + 5px);   
+    padding-top: calc(3rem + 5px);
 }
 
 a {
@@ -54,7 +54,8 @@ a {
     cursor: default;
 }
 
-.mobile, .mobile-text {
+.mobile,
+.mobile-text {
     display: none;
 }
 
@@ -98,10 +99,6 @@ a {
     height: 100%;
 }
 
-.logo:hover {
-    content: url("../logo_transparent_sparkle.svg");
-}
-
 .social-link {
     display: flex;
     align-items: center;
@@ -109,7 +106,7 @@ a {
     margin: 0 1rem;
     color: lightslategray;
     text-decoration: none;
-	-moz-transition: all .1s ease-in;
+    -moz-transition: all .1s ease-in;
     -o-transition: all .1s ease-in;
     -webkit-transition: all .1s ease-in;
     transition: all .1s ease-in;
@@ -141,7 +138,7 @@ a {
 
 .copy-icon {
     font-size: 0.75rem;
-    padding:4px;
+    padding: 4px;
     color: #121212;
     background-color: slategray;
     border-radius: 5px;
@@ -181,11 +178,12 @@ a {
     transition: all .1s ease-in;
 }
 
-.source-button, .small-button {
+.source-button,
+.small-button {
     padding: 5px 10px;
     background-color: lightslategray;
     border-radius: 5px;
-	-moz-transition: all .1s ease-in;
+    -moz-transition: all .1s ease-in;
     -o-transition: all .1s ease-in;
     -webkit-transition: all .1s ease-in;
     transition: all .1s ease-in;
@@ -195,12 +193,19 @@ a {
     font-size: 0.8rem;
 }
 
-.source-button:hover, .small-button:hover {
+.source-button:hover,
+.small-button:hover {
     background-color: lightsteelblue;
 }
 
 @media screen and (max-width: 800px) {
-    .source-link, .source-button, .footer, .nav-menu, .web-header, #header-logo {
+
+    .source-link,
+    .source-button,
+    .footer,
+    .nav-menu,
+    .web-header,
+    #header-logo {
         display: none;
     }
 
@@ -211,7 +216,7 @@ a {
     .nav-container {
         justify-content: center;
     }
-    
+
     .mobile {
         display: flex;
         position: fixed;
@@ -230,7 +235,7 @@ a {
     .nav-mobile-link {
         width: calc(100% / 3);
         height: calc(100% - 5px);
-        display:flex;
+        display: flex;
         justify-content: center;
         align-items: center;
         color: #555555;
