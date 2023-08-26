@@ -70,7 +70,7 @@
     width: calc(100% / 3 - 0.5rem);
     box-sizing: border-box;
     margin-bottom: 1rem;
-    border: 2px solid lightslategray;
+    border: 2px solid #3f4857;
     border-radius: 5px;
     cursor: default;
     -moz-transition: all .2s ease-in-out;
@@ -134,6 +134,7 @@
 
 .course-code {
     color: lightsteelblue;
+    margin-right: 0.5rem;
 }
 
 .course-name {
@@ -160,6 +161,10 @@
     background-color: rgba(255,255,255, 0.1);
 }
 
+.courses-menu[data-loading="false"] > .filter-list {
+  display: flex;
+}
+
 .filter-group-header {
     font-size: 0.7rem;
     width: 100%;
@@ -177,7 +182,7 @@
     margin: 5px 5px 0 0;
     border-radius: 5px;
     box-sizing: border-box;
-    border: 2px solid lightslategray;
+    border: 2px solid #3f4857;
     -moz-transition: all .1s ease-in;
     -o-transition: all .1s ease-in;
     -webkit-transition: all .1s ease-in;
@@ -209,6 +214,7 @@
     transition: all .1s ease-in;
     content: '\f067';
     color: rgba(255, 179, 0, 1);
+    margin-left: 0.5rem;
 }
 
 .filter-selected .filter-text::after {
@@ -234,10 +240,19 @@
 	cursor: pointer;
 }
 
+.icon-wrapper {
+  margin-right: 0.5rem;
+}
+
 .loading-icon-container {
     display: flex;
     width: 100%;
-    justify-content: center;;
+    justify-content: center;
+}
+
+#main-course-list[data-loading="false"] > .loading-icon-container,
+.courses-menu[data-loading="false"] > .loading-icon-container {
+  display: none;
 }
 
 .results-placeholder {

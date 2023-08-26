@@ -20,12 +20,9 @@
 	<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,200;0,500;1,500;1,700&display=swap"
 		rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@100&display=swap" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
 
 
 	<script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
-	<script src="https://code.jquery.com/jquery-3.6.0.min.js"
-		integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 	<script src="https://kit.fontawesome.com/e0a42c5399.js" crossorigin="anonymous"></script>
 	<script src="js/app.js"></script>
 
@@ -108,8 +105,10 @@
 	</div>
 
 	<script>
-		$("#carousel-item-0").fadeIn(1000);
+		fadeIn(document.getElementById('carousel-item-0'), 1000);
+
 		let maxArrayPos = 0;
+
 		var typed = new Typed('#typed', {
 			stringsElement: '#typed-strings',
 			loop: true,
@@ -117,12 +116,12 @@
 			backSpeed: 30,
 			cursorChar: '_',
 			backDelay: 3000,
-			onStringTyped: function (arrayPos, self) {
+			onStringTyped: function(arrayPos, self) {
 				maxArrayPos = Math.max(maxArrayPos, arrayPos);
 				let lastIndex = arrayPos > 0 ? arrayPos - 1 : maxArrayPos;
-				if (lastIndex != arrayPos) {
-					$("#carousel-item-" + lastIndex).hide();
-					$("#carousel-item-" + arrayPos).fadeIn(500);
+				if (lastIndex !== arrayPos) {
+					document.getElementById('carousel-item-' + lastIndex).style.display = 'none';
+					fadeIn(document.getElementById('carousel-item-' + arrayPos), 500);
 				}
 			}
 		});
