@@ -1,3 +1,3 @@
-Visit http://rcpope.net/ to view the contents of this repository.
+This repository is no longer maintained.
 
-`/php/` is hosted at http://api.rcpope.net/.
+Superseded by https://github.com/popestr/rcpope-net.
